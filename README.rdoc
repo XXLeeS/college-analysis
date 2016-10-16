@@ -10,7 +10,7 @@
     bundle install
     
 * Database creation & initialization
-    no need!
+    no need!
 
 * How to run the test suite
     rails s
