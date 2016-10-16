@@ -15,5 +15,7 @@
 //= require turbolinks
 //= require d3
 //= require bootstrap-sprockets
+//= require jquery-ui
+//= require vue
 
 //= require_tree .

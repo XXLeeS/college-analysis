@@ -1,0 +1,43 @@
+<div class="container">
+	<div class="row">
+		<div id="enemy_input">
+			<%= form_tag enemies_path, :method => :post, :class => 'form-inline' do %>
+				<div class="form-group">
+					<label for="dep">Select the Department</label>
+					<%= select_tag :dep_no, options_for_select(@departments.collect{ |d| [d.name, d.dep_no]}), :class => "form-control"  %>
+				</div>
+				<button type="submit" class="btn btn-default">Submit</button>
+			<% end %>
+		</div>
+	</div>
+	
+	<% if !@results.nil? %>
+	<div class="row">
+		<div id="enemy_result">
+			<table class="table">
+			<thead>
+				<tr>
+					<th>dep</th>
+					<th>opponent</th>
+					<th>win</th>
+					<th>total</th>
+					<th>rate</th>
+				</tr>
+			</thead>
+			<tbody>
+			<% @results.each do |r| %>
+				<tr>
+					<td><%= r.dep_name %></td>
+					<td><%= r.opponent_name %></td>
+					<td><%= r.win %></td>
+					<td><%= r.total %></td>
+					<td><%= r.win_rate %></td>
+				</tr>
+			<% end %>
+			</tbody>
+			</table>
+			
+		</div>
+	</div>
+	<% end %>
+</div>
