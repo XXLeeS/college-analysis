@@ -1,8 +1,8 @@
-$(document).ready(function(){
+// $(document).ready(function(){
 
-	var enemies = new Vue({
-		el: 
-	})
+// 	var enemies = new Vue({
+// 		el: 
+// 	})
 
-})
+// })
 

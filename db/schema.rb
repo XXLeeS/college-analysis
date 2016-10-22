@@ -16,14 +16,17 @@ ActiveRecord::Schema.define(version: 20160817180451) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "dep_105", primary_key: "dep_no", force: :cascade do |t|
+  create_table "dep_105", id: false, force: :cascade do |t|
+    t.string  "dep_no", null: false
     t.string  "name"
     t.integer "last"
   end
 
+  add_index "dep_105", ["dep_no"], name: "index_dep_105_on_dep_no", unique: true, using: :btree
+
   create_table "winrate_105", id: false, force: :cascade do |t|
-    t.string  "dep",      limit: 6, null: false
-    t.string  "opponent", limit: 6, null: false
+    t.string  "dep"
+    t.string  "opponent"
     t.integer "win"
     t.integer "total"
     t.decimal "win_rate"
