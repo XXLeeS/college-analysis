@@ -54,6 +54,8 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
+  root to: 'welcome#index'
+
   get '/enemies' => 'departments#enemy'
   post '/enemies' => 'departments#enemy_submit'
   get '/get_nodes' => 'departments#get_nodes', defaults: { format: 'json' }

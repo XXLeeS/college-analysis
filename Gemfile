@@ -27,6 +27,7 @@ gem 'bootstrap-sass'
 gem 'd3-rails', '~> 3.5.17'
 gem 'jquery-ui-rails'
 gem 'vuejs-rails'
+gem "font-awesome-rails"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
