@@ -16,4 +16,22 @@ class DepartmentsController < ApplicationController
 
 		render :enemy
 	end
+
+	def get_nodes
+		@nodes = File.read('app/assets/javascripts/nodes105.json')
+		respond_to do |format|
+		    format.json { render json: @nodes }
+		end
+	end
+
+	def get_links
+		@links = File.read('app/assets/javascripts/links105.json')
+		respond_to do |format|
+		    format.json { render json: @links }
+		end
+	end
+
+	def force
+		@departments = Dep105.all
+	end
 end

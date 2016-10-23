@@ -8,4 +8,6 @@ class Winrate105 < ActiveRecord::Base
 	def opponent_name
 		Dep105.find(self.opponent).name
 	end
+
+	belongs_to :dep_105
 end

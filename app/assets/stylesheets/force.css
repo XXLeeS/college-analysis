@@ -1,0 +1,15 @@
+#graph circle{
+    opacity: 0.5;    
+}
+#graph circle.node-active{
+    opacity: 1;
+}
+#graph line{
+    stroke-opacity: 0.3;
+}
+#graph line.link-active{
+    stroke-opacity: 0.7;
+}
+#graph text{
+    font-size: 12px;
+}
