@@ -1,7 +1,6 @@
 class DepartmentsController < ApplicationController
 	def enemy
 		@departments = Dep105.all
-		print @departments
 
 		respond_to do |format|
 			format.html
@@ -33,5 +32,10 @@ class DepartmentsController < ApplicationController
 
 	def force
 		@departments = Dep105.all
+
+		respond_to do |format|
+			format.html
+			format.json { render json: @departments }
+		end
 	end
 end

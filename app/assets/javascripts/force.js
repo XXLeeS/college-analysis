@@ -1,3 +1,18 @@
+var departments;
+$.getJSON('/force', function(data){
+    departments = data;
+});
+function depnoToName(dep_no){
+    var name;
+    $.each(departments, function(i, v){
+        if(v.dep_no == dep_no){
+            name = v.name;
+            return;
+        }
+    });
+    return name;
+}
+
 d3.json("/get_nodes", function(nodes){
     d3.json("/get_links", function(links){        
         var svg_height = window.innerHeight;
@@ -109,7 +124,7 @@ d3.json("/get_nodes", function(nodes){
                         showtext(d);
                         d3.select(this).classed("node-active", true);
                         
-                        $(".node-name").text(d.name);
+                        $(".node-name").text(depnoToName(d.name));
                     })
                     .on("mouseout", function(d){
                         hidetext(d);
@@ -129,7 +144,7 @@ d3.json("/get_nodes", function(nodes){
             svg_texts.enter()
                     .append("text")
                     .text(function(d){
-                        return d.name;
+                        return depnoToName(d.name);
                     })
                     .style("fill", "black")
                     .style("visibility", "hidden")
