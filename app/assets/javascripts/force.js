@@ -1,7 +1,22 @@
 var departments;
+var dep_autocomplete = [];
 $.getJSON('/force', function(data){
     departments = data;
+    $.each(data, function(i, v){
+        dep_autocomplete.push({
+            label: v.name,
+            value: v.dep_no
+        });
+    });
+    dep_autocomplete.sort(function(a, b){
+        return a.value - b.value;
+    });
 });
+
+$('#search').autocomplete({
+    source: dep_autocomplete
+});
+
 function depnoToName(dep_no){
     var name;
     $.each(departments, function(i, v){
@@ -191,6 +206,25 @@ d3.json("/get_nodes", function(nodes){
             
             start();
         }
+
+//        search function
+        $('#search_submit').click(function(){
+            var dep_no = $('#search').val();
+            if(dep_no){
+                var others = svg_nodes.filter(function(d, i){
+                    return d.name != dep_no;
+                });
+                var links = svg_links;
+                others.style("opacity", "0");
+                links.style("opacity", "0");
+                others.transition()
+                    .duration(3000)
+                    .style("opacity", 0.5);
+                links.transition()
+                    .duration(3000)
+                    .style("opacity", 0.3);
+            }
+        })
     })
 })
 

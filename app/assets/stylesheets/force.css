@@ -1,3 +1,8 @@
+#dashboard input{
+	width: auto;
+	display: inline-block;
+}
+
 #graph circle{
     opacity: 0.5;    
 }
