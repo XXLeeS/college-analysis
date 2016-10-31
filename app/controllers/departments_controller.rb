@@ -1,4 +1,20 @@
 class DepartmentsController < ApplicationController
+	def index
+		@departments = Dep105.all.order(:dep_no)
+	end
+
+	def show
+		@department = Dep105.find(params[:id])
+		if @department.last > 0
+			@last = "正取"
+		elsif @department.last < 0
+			@last = "備取" + (String(@department.last.abs) rescue nil)
+		else
+			@last = "無"
+		end
+			
+	end
+
 	def enemy
 		@departments = Dep105.all
 
@@ -37,5 +53,15 @@ class DepartmentsController < ApplicationController
 			format.html
 			format.json { render json: @departments }
 		end
+	end
+
+	private
+
+	def project_params
+		params.require(:project).permit(:name, :description, :pixel_id)
+	end
+
+	def set_user_project
+		@project = current_user.projects.find(params[:id])
 	end
 end

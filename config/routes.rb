@@ -56,6 +56,13 @@ Rails.application.routes.draw do
 
   root to: 'welcome#index'
 
+  resources :departments, :only => [:index, :show] do
+    collection do
+      # get :enemies
+      # post :enemies, controller => 'enemy_submit'
+    end
+  end
+
   get '/enemies' => 'departments#enemy'
   post '/enemies' => 'departments#enemy_submit'
   get '/get_nodes' => 'departments#get_nodes', defaults: { format: 'json' }
