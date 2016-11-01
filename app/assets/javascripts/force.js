@@ -212,18 +212,18 @@ d3.json("/get_nodes", function(nodes){
         $('#search_submit').click(function(){
             var dep_no = $('#search').val();
             if(dep_no){
-                var others = svg_nodes.filter(function(d, i){
-                    return d.name != dep_no;
-                });
-                var links = svg_links;
-                others.style("opacity", "0");
-                links.style("opacity", "0");
-                others.transition()
-                    .duration(3000)
-                    .style("opacity", 0.5);
-                links.transition()
-                    .duration(3000)
-                    .style("opacity", 0.3);
+                var target;
+                svg_nodes.each(function(d){
+                    if(d.name == dep_no){
+                        target = d3.select(this);
+                    }
+                })
+                var target_x = svg_width/2 - target.data()[0].x;
+                var target_y = svg_height/2 - target.data()[0].y;
+                zoom.translate([target_x, target_y]).scale(1);
+                container.attr("transform", "translate(" + target_x + "," + target_y + ")scale(1)");
+                target.attr("r", 100);
+                target.transition().duration(3000).attr("r", 10);
             }
         })
     })
