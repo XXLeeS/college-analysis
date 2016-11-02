@@ -1,6 +1,17 @@
 class DepartmentsController < ApplicationController
 	def index
 		@departments = Dep105.all.order(:dep_no)
+
+		respond_to do |format|
+			format.html
+			format.json { render json: @departments }
+		end
+	end
+
+	def search
+		dep = params[:dep_no]
+
+		redirect_to department_url(dep)
 	end
 
 	def show
@@ -12,11 +23,10 @@ class DepartmentsController < ApplicationController
 		else
 			@last = "無"
 		end
-			
 	end
 
 	def enemy
-		@departments = Dep105.all
+		@departments = Dep105.all.order(:dep_no)
 
 		respond_to do |format|
 			format.html
@@ -25,7 +35,6 @@ class DepartmentsController < ApplicationController
 	end
 
 	def enemy_submit
-		@departments = Dep105.all
 		dep = params[:dep_no]
 		@results = Winrate105.where('dep = (?)', dep)
 
@@ -47,7 +56,7 @@ class DepartmentsController < ApplicationController
 	end
 
 	def force
-		@departments = Dep105.all
+		@departments = Dep105.all.order(:dep_no)
 
 		respond_to do |format|
 			format.html

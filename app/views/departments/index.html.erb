@@ -1,5 +1,18 @@
 <div class="container">
 	<div class="row">
+		<%= form_tag search_departments_path, :method => :post, :class => 'form-horizontal' do %>
+			<div class="col-xs-10">
+				<div class="form-group">
+					<%= text_field_tag :dep_no, nil, class: "form-control", autofocus: true, placeholder: "輸入系所名稱" %>
+				</div>
+			</div>
+			<div class="col-xs-2">
+				<button type="submit" class="btn btn-default">Submit</button>
+			</div>
+		<% end %>
+	</div>
+
+	<div class="row">
 	<% @departments.each do |d| %>
 		<div class="col-md-4">
 			<%= link_to d.name, department_path(d) %>

@@ -60,6 +60,7 @@ Rails.application.routes.draw do
     collection do
       # get :enemies
       # post :enemies, controller => 'enemy_submit'
+      post :search
     end
   end
 
