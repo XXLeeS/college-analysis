@@ -11,15 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160817180451) do
+ActiveRecord::Schema.define(version: 20161103194628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "colleges", id: false, force: :cascade do |t|
+    t.string "college_no", null: false
+    t.string "name"
+  end
+
+  add_index "colleges", ["college_no"], name: "index_colleges_on_college_no", unique: true, using: :btree
+
   create_table "dep_105", id: false, force: :cascade do |t|
-    t.string  "dep_no", null: false
+    t.string  "dep_no",     null: false
     t.string  "name"
     t.integer "last"
+    t.integer "lowest"
+    t.integer "field"
+    t.string  "college_no"
   end
 
   add_index "dep_105", ["dep_no"], name: "index_dep_105_on_dep_no", unique: true, using: :btree

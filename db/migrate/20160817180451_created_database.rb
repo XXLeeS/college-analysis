@@ -4,8 +4,6 @@ class CreatedDatabase < ActiveRecord::Migration
 		t.string  "dep_no", null: false
 	    t.string  "name"
 	    t.integer "last"
-	    # t.integer "lowest"
-	    # t.integer "class"
 	end
 	add_index :dep_105, :dep_no, unique: true
 
