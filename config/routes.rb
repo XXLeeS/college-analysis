@@ -63,6 +63,7 @@ Rails.application.routes.draw do
       post :search
     end
   end
+  get '/colleges/:id' => 'departments#show_college', as: "college"
 
   get '/enemies' => 'departments#enemy'
   post '/enemies' => 'departments#enemy_submit'

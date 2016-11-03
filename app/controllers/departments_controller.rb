@@ -1,6 +1,7 @@
 class DepartmentsController < ApplicationController
 	def index
 		@departments = Dep105.all.order(:dep_no)
+		@colleges = College.all.order(:college_no)
 
 		respond_to do |format|
 			format.html
@@ -12,6 +13,11 @@ class DepartmentsController < ApplicationController
 		dep = params[:dep_no]
 
 		redirect_to department_url(dep)
+	end
+
+	def show_college
+		@college = College.find(params[:id])
+		@departments = Dep105.where('college_no = (?)', @college.college_no)
 	end
 
 	def show
