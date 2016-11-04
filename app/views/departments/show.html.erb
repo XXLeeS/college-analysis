@@ -2,7 +2,9 @@
 	<div class="row">
 		<h1><%= @department.name %></h1>
 		<div class="col-md-4">
-			<h3>最低備取名次：<%= @last %></h3>
+			<p>最低備取名次：<%= @department.last_text %></p>
+			<p>系所領域：<%= @department.field_text %></p>
+			<p>最低錄取分數：<%= @department.lowest_text %></p>
 		</div>
 	</div>
 </div>

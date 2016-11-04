@@ -22,13 +22,6 @@ class DepartmentsController < ApplicationController
 
 	def show
 		@department = Dep105.find(params[:id])
-		if @department.last > 0
-			@last = "正取"
-		elsif @department.last < 0
-			@last = "備取" + (String(@department.last.abs) rescue nil)
-		else
-			@last = "無"
-		end
 	end
 
 	def enemy
