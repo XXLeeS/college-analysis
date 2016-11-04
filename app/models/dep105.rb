@@ -39,5 +39,7 @@ class Dep105 < ActiveRecord::Base
 		end
 	end
 
+	belongs_to :college
 	has_many :winrate105s
+	has_many :link105s
 end
