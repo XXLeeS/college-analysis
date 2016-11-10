@@ -1,12 +1,12 @@
 var current_path = window.location.pathname.split("/");
 var current_id = current_path[current_path.length-1];
 d3.json("/departments/" + current_id + ".json", function(data){
-	var adj_dep = data.adj_dep.filter(function(d){
-		return d.value >= 5;
-	});
 	var student_sum = data.adj_dep.reduce(function(sum, d){
 		return sum + d.value;
 	}, 0);
+	var adj_dep = data.adj_dep.filter(function(d){
+		return d.value/student_sum >= 0.05;
+	});
 	var other = {
 		dep_no: 0,
 		name: "其他",
@@ -22,11 +22,13 @@ d3.json("/departments/" + current_id + ".json", function(data){
 				// .startAngle(-90 * (pi/180))
 				// .endAngle(90 * (pi/180));
 	var piedata = pie(adj_dep.map(function(d){return d.value;}));
+	console.log(piedata);
 
 	var outerRadius = 150;
+	var innerRadius = 120;
 	var arc = d3.svg.arc()
 				.outerRadius(outerRadius)
-				.innerRadius(0);
+				.innerRadius(innerRadius);
 
 	var colors = d3.scale.category10();
 
@@ -39,12 +41,29 @@ d3.json("/departments/" + current_id + ".json", function(data){
 				.enter()
 				.append("g")
 				.attr("transform", "translate(" + svg_width/2 + "," + svg_height/2 + ")");
+	var text_block = svg.append("text")
+						.attr("text-anchor", "middle")
+						.attr("transform", "translate(" + svg_width/2 + "," + svg_height/2 + ")");
+	var text_name = text_block.append("tspan")
+						.classed("name", true)
+						.attr("text-anchor", "middle")
+						.attr("x", "0")
+						.attr("dy", "20px");
+	var text_value = text_block.append("tspan")
+						.classed("value", true)
+						.attr("text-anchor", "middle")
+						.attr("x", "0")
+						.attr("dy", "12px");
 	arcs.append("path")
 		.attr("fill", function(d, i){
 			return colors(i);
 		})
 		.attr("d", function(d, i){
 			return arc(d);
+		})
+		.on("mouseover", function(d, i){
+			text_name.text(adj_dep[i].name)
+			text_value.text(adj_dep[i].value)
 		});
 	arcs.append("text")
 		.text(function(d){
@@ -61,5 +80,4 @@ d3.json("/departments/" + current_id + ".json", function(data){
 	    })
 	    .attr("text-anchor", "middle")
 	    .attr("fill", "white");
-
 })

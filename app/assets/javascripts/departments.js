@@ -6,7 +6,6 @@ $.getJSON('/departments', function(data){
 			value: v.dep_no
 		});
 	});
-	console.log(dep_autocomplete);
 	dep_autocomplete.sort(function(a, b){
 		return a.value - b.value;
 	});

@@ -5,18 +5,11 @@
 			<p>最低備取名次：<%= @department.last_text %></p>
 			<p>系所領域：<%= @department.field_text %></p>
 			<p>最低錄取分數：<%= @department.lowest_text %></p>
-			<p><%= @student_sum %></p>
-			<% @adj_dep.each do |d| %>
-				<p><%= d[:name] %>, <%= d[:value] %></p>
-			<% end %>
-
 		</div>
 		<div class="col-md-4">
 			<div id="piechart">
 
 			</div>
-
 		</div>
-
 	</div>
 </div>
