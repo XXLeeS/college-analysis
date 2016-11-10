@@ -24,7 +24,7 @@ class DepartmentsController < ApplicationController
 		@department = Dep105.find(params[:id])
 		@adj_raw = Link105.where('source = (?) OR target = (?)', @department.dep_no, @department.dep_no)
 		@student_sum = @adj_raw.sum(:value)
-		@adj_dep = @adj_raw.map{|r| @department.dep_no == r.source ? { :dep_no => r.target, :name => depNo_to_name(r.target), :value => r.value} : { :dep_no => r.source, :name => depNo_to_name(r.target), :value => r.value} }
+		@adj_dep = @adj_raw.map{|r| @department.dep_no == r.source ? { :dep_no => r.target, :name => depNo_to_name(r.target), :value => r.value} : { :dep_no => r.source, :name => depNo_to_name(r.source), :value => r.value} }
 	end
 
 	def enemy
