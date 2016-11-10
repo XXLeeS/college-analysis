@@ -13,14 +13,15 @@ d3.json("/departments/" + current_id + ".json", function(data){
 		value: student_sum - adj_dep.reduce(function(sum, d){return sum + d.value;}, 0)
 	}
 	adj_dep.push(other);
-	console.log(adj_dep);
+	adj_dep.sort(function(a, b){
+		return b.value - a.value;
+	})
 	var svg_width = 400;
 	var svg_height = 400;
 
 	var pi = Math.PI;
 	var pie = d3.layout.pie()
-				// .startAngle(-90 * (pi/180))
-				// .endAngle(90 * (pi/180));
+				.padAngle(.02);
 	var piedata = pie(adj_dep.map(function(d){return d.value;}));
 	console.log(piedata);
 
@@ -29,8 +30,9 @@ d3.json("/departments/" + current_id + ".json", function(data){
 	var arc = d3.svg.arc()
 				.outerRadius(outerRadius)
 				.innerRadius(innerRadius);
-
-	var colors = d3.scale.category10();
+	var colors = d3.scale.linear().domain([0, adj_dep.length])
+					      .interpolate(d3.interpolateHcl)
+					      .range([d3.rgb("#00F"), d3.rgb('#F0F')]);
 
 	var svg = d3.select("#piechart")
 				.append("svg")
@@ -62,8 +64,9 @@ d3.json("/departments/" + current_id + ".json", function(data){
 			return arc(d);
 		})
 		.on("mouseover", function(d, i){
-			text_name.text(adj_dep[i].name)
-			text_value.text(adj_dep[i].value)
+			text_name.text(adj_dep[i].name);
+			text_value.text(adj_dep[i].value);
+			//add stroke-width
 		});
 	arcs.append("text")
 		.text(function(d){
