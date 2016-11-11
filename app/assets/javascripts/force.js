@@ -1,3 +1,4 @@
+if($('#force')){
 var departments;
 var dep_autocomplete = [];
 $.getJSON('/force', function(data){
@@ -93,7 +94,7 @@ d3.json("/get_nodes", function(nodes){
         
         
 //        start drawing graph
-        var svg = d3.select("#graph")
+        var svg = d3.select("#force")
                     .append("svg")
                     .attr("width", svg_width)
                     .attr("height", svg_height)
@@ -228,4 +229,4 @@ d3.json("/get_nodes", function(nodes){
         })
     })
 })
-
+}

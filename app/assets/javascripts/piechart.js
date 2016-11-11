@@ -1,3 +1,4 @@
+if($('#piechart')){
 var current_path = window.location.pathname.split("/");
 var current_id = current_path[current_path.length-1];
 d3.json("/departments/" + current_id + ".json", function(data){
@@ -42,6 +43,14 @@ d3.json("/departments/" + current_id + ".json", function(data){
 						.attr("text-anchor", "middle")
 						.attr("x", "0")
 						.attr("dy", "20px");
+	var horizontal_line = text_block.append("line")
+									.attr({"x1": 0,
+										   "y1": 0,
+											"x2": 50,
+											"y2": 0,
+											"stroke-width": 2,
+											"stroke": "black"})
+									
 	var text_value = text_block.append("tspan")
 							.classed("value", true)
 							.attr("text-anchor", "middle")
@@ -77,4 +86,20 @@ d3.json("/departments/" + current_id + ".json", function(data){
 	    })
 	    .attr("text-anchor", "middle")
 	    .attr("fill", "white");
+	/*arcs.append("line")
+		.attr("x1", function(d){
+			return arc.centroid(d)[1]
+		})
+		.attr("y1", function(d){
+			return arc.centroid(d)[0]
+		})
+		.attr("x2", function(d){
+			return arc.centroid(d)[1] + 50
+		})
+		.attr("x1", function(d){
+			return arc.centroid(d)[0]
+		})
+		.attr("stroke-width", "2")
+		.attr("stroke", "black")*/
 })
+}
