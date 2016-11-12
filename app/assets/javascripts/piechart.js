@@ -9,19 +9,24 @@ d3.json("/departments/" + current_id + ".json", function(data){
 	var svg_width = 600;
 	var svg_height = 600;
 
-	var pi = Math.PI;
 	var pie = d3.layout.pie()
 				.padAngle(.02);
-	var piedata = pie(adj_dep.map(function(d){return d.value;}));
+	//define the attribute name of object we want
+	pie.value(function(d, i){
+		return d.value;
+	})
+	var piedata = pie(adj_dep);
+	console.log(piedata);
 
-	var R = 200;
+	var radius = 200;
+	var labelRadius = 230;
 	var arc = d3.svg.arc()
-				.outerRadius(R)
-				.innerRadius(R-30);
+				.outerRadius(radius)
+				.innerRadius(radius - 30);
 	var arc_outer = d3.svg.arc()
-						.outerRadius(R+20)
-						.innerRadius(R-30);
-	var colors = d3.scale.linear().domain([0, adj_dep.length])
+						.outerRadius(radius + 20)
+						.innerRadius(radius - 30);
+	var colors = d3.scale.linear().domain([0, piedata.length])
 					      .interpolate(d3.interpolateHcl)
 					      .range([d3.rgb("#00F"), d3.rgb('#F0F')]);
 
@@ -34,28 +39,29 @@ d3.json("/departments/" + current_id + ".json", function(data){
 				.enter()
 				.append("g")
 				.attr("transform", "translate(" + svg_width/2 + "," + svg_height/2 + ")");
-	var text_block = svg.append("text")
+	var center_block = svg.append("text")
 						.attr("text-anchor", "middle")
 						.attr("transform", "translate(" + svg_width/2 + "," + svg_height/2 + ")");
-	var link = text_block.append("a")
+	var center_link = center_block.append("a")
 						.classed("name", true)
-	var text_name = link.append("tspan")
+	var center_name = center_link.append("tspan")
 						.attr("text-anchor", "middle")
 						.attr("x", "0")
 						.attr("dy", "20px");
-	var horizontal_line = text_block.append("line")
-									.attr({"x1": 0,
-										   "y1": 0,
-											"x2": 50,
-											"y2": 0,
-											"stroke-width": 2,
-											"stroke": "black"})
+	// var horizontal_line = center_block.append("line")
+	// 								.attr({"x1": 0,
+	// 									   "y1": 0,
+	// 										"x2": 50,
+	// 										"y2": 0,
+	// 										"stroke-width": 2,
+	// 										"stroke": "black"})
 									
-	var text_value = text_block.append("tspan")
+	var center_value = center_block.append("tspan")
 							.classed("value", true)
 							.attr("text-anchor", "middle")
 							.attr("x", "0")
 							.attr("dy", "12px");
+
 	arcs.append("path")
 		.attr("fill", function(d, i){
 			return colors(i);
@@ -64,42 +70,59 @@ d3.json("/departments/" + current_id + ".json", function(data){
 			return arc(d);
 		})
 		.on("mouseover", function(d, i){
-			text_name.text(adj_dep[i].name);
-			link.attr("href", '/departments/'+adj_dep[i].dep_no)
-			text_value.text(adj_dep[i].value + " 人 / " + adj_dep[i].percentage + " %");
+			center_name.text(d.data.name);
+			center_link.attr("href", '/departments/'+d.data.dep_no)
+			center_value.text(d.data.value + " 人 / " + d.data.percentage + " %");
 			d3.select(this).transition().duration(100).attr("d", arc_outer);
 		})
 		.on("mouseout", function(d, i){
 			d3.select(this).transition().duration(100).attr("d", arc);
 		});
-	arcs.append("text")
-		.text(function(d, i){
-			if(adj_dep[i].percentage >= 5){
-				return adj_dep[i].percentage + "%";
-			}
-			else{
-				return;
-			}
+
+	function midAngle(d){
+		return (d.startAngle + (d.endAngle - d.startAngle)/2);
+	}
+	var label_line =  arcs.filter(function(d){
+			return d.data.percentage >= 5;
 		})
-		.attr("transform", function(d, i){
-	        return "translate(" + arc.centroid(d) + ")";
-	    })
-	    .attr("text-anchor", "middle")
-	    .attr("fill", "white");
-	/*arcs.append("line")
+		.append("line")
 		.attr("x1", function(d){
-			return arc.centroid(d)[1]
+			return arc.centroid(d)[0];
 		})
 		.attr("y1", function(d){
-			return arc.centroid(d)[0]
+			return arc.centroid(d)[1];
 		})
 		.attr("x2", function(d){
-			return arc.centroid(d)[1] + 50
+			return Math.sin(midAngle(d)) * labelRadius;
 		})
-		.attr("x1", function(d){
-			return arc.centroid(d)[0]
+		.attr("y2", function(d){
+			return -Math.cos(midAngle(d)) * labelRadius;
 		})
-		.attr("stroke-width", "2")
-		.attr("stroke", "black")*/
+		.attr("stroke-width", "1")
+		.attr("stroke", "#666")
+	var lebel_text = arcs.filter(function(d){
+			return d.data.percentage >= 5;
+		})
+		.append("text")
+		.attr({
+			"x": function(d){
+				var x = Math.sin(midAngle(d)) * labelRadius;
+				var sign = (x > 0)? 1 : -1;
+				var offset = 5;
+				return x + sign*offset;
+			},
+			"y": function(d){
+				var y = -Math.cos(midAngle(d)) * labelRadius;
+				var sign = (y > 0)? 1 : -1;
+				var offset = 5;
+				return y + sign*offset;
+			},
+			"text-anchor": function(d){
+				return (midAngle(d) < Math.PI)? "start" : "end"
+			}
+		})
+		.text(function(d){
+			return d.data.percentage + "%";
+		});
 })
 }
