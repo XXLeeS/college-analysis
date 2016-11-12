@@ -6,8 +6,8 @@ d3.json("/departments/" + current_id + ".json", function(data){
 		return sum + d.value;
 	}, 0);
 	var adj_dep = data.adj_dep;
-	var svg_width = 600;
-	var svg_height = 600;
+	var svg_width = 500;
+	var svg_height = 500;
 
 	var pie = d3.layout.pie()
 				.padAngle(.02);
@@ -41,26 +41,23 @@ d3.json("/departments/" + current_id + ".json", function(data){
 				.attr("transform", "translate(" + svg_width/2 + "," + svg_height/2 + ")");
 	var center_block = svg.append("text")
 						.attr("text-anchor", "middle")
-						.attr("transform", "translate(" + svg_width/2 + "," + svg_height/2 + ")");
-	var center_link = center_block.append("a")
-						.classed("name", true)
-	var center_name = center_link.append("tspan")
-						.attr("text-anchor", "middle")
-						.attr("x", "0")
-						.attr("dy", "20px");
-	// var horizontal_line = center_block.append("line")
-	// 								.attr({"x1": 0,
-	// 									   "y1": 0,
-	// 										"x2": 50,
-	// 										"y2": 0,
-	// 										"stroke-width": 2,
-	// 										"stroke": "black"})
-									
+						.attr("transform", "translate(" + svg_width/2 + "," + svg_height/3 + ")");
 	var center_value = center_block.append("tspan")
 							.classed("value", true)
 							.attr("text-anchor", "middle")
 							.attr("x", "0")
-							.attr("dy", "12px");
+							.attr("dy", svg_height*2/15);
+	var center_link = center_block.append("a")
+						.classed("name", true);
+	var center_name = center_link.append("tspan")
+						.attr("text-anchor", "middle")
+						.attr("x", "0")
+						.attr("dy", svg_height*1/15);
+	var center_percentage = center_block.append("tspan")
+							.classed("percentage", true)
+							.attr("text-anchor", "middle")
+							.attr("x", "0")
+							.attr("dy", svg_height*2/15);
 
 	arcs.append("path")
 		.attr("fill", function(d, i){
@@ -70,9 +67,10 @@ d3.json("/departments/" + current_id + ".json", function(data){
 			return arc(d);
 		})
 		.on("mouseover", function(d, i){
-			center_name.text(d.data.name);
+			center_value.text(d.data.value + " 人");
 			center_link.attr("href", '/departments/'+d.data.dep_no)
-			center_value.text(d.data.value + " 人 / " + d.data.percentage + " %");
+			center_name.text(d.data.name);
+			center_percentage.text(d.data.percentage + " %");
 			d3.select(this).transition().duration(100).attr("d", arc_outer);
 		})
 		.on("mouseout", function(d, i){

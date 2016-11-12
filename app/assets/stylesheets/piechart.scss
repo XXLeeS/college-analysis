@@ -1,0 +1,15 @@
+$piechart-height: 500px;
+%piechart-big{
+	font-size: $piechart-height*2/15;
+	fill: #aaa;
+}
+#piechart .value{
+	@extend %piechart-big;
+}
+#piechart .name{
+	font-size: 18px;
+	fill: #333;
+}
+#piechart .percentage{
+	@extend %piechart-big;
+}
