@@ -1,7 +1,7 @@
-<div class="container">
-	<div class="row">
+<div class="container" id="show">
+	<div class="row outline">
 	<% @departments.each do |d| %>
-		<div class="col-md-4">
+		<div class="col-md-12 one-depart">
 			<%= link_to d.short_name, department_path(d) %>
 		</div>
 	<% end %>
