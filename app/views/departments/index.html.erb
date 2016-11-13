@@ -1,5 +1,5 @@
-<div class="container">
-	<div class="row">
+<div class="container" id="department_index">
+	<div class="row" id="search">
 		<%= form_tag search_departments_path, :method => :post, :class => 'form-horizontal' do %>
 			<div class="col-xs-10">
 				<div class="form-group">
@@ -12,10 +12,12 @@
 		<% end %>
 	</div>
 
-	<div class="row">
+	<div class="row outline" >
 	<% @colleges.each do |c| %>
-		<div class="col-md-4">
-			<%= link_to c.name, college_path(c) %>
+		<div class="col-md-12 ">
+			<div class="one-college">
+				<%= link_to c.name, college_path(c) %>
+			</div>
 		</div>
 	<% end %>
 	</div>

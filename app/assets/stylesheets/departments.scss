@@ -1,9 +1,17 @@
 // Place all the styles related to the departments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.form-group{
+#department_index #search{
 	margin-top: 10px;
 }
-.col-xs-2{
-	margin-top: 10px;
+#department_index .one-college{
+	border-bottom: solid 2px #fff;
+}
+
+#department_index .one-college a{
+	color: #ea9215;
+	font-size: 40px;
+}
+.outline{
+	border : solid 2px #fff;
 }
