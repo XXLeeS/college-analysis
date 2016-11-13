@@ -1,4 +1,11 @@
-#dashboard input{
+#network{
+	overflow: hidden;
+}
+
+#network #sidebar{
+	
+}
+#network #sidebar input{
 	width: auto;
 	display: inline-block;
 }

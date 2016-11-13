@@ -31,8 +31,8 @@ function depnoToName(dep_no){
 
 d3.json("/get_nodes", function(nodes){
     d3.json("/get_links", function(links){        
-        var svg_height = window.innerHeight;
-        var svg_width = document.body.clientWidth;
+        var svg_height = window.innerHeight - $('#navbar').height();
+        var svg_width = document.body.clientWidth*3/4;
 
         var colors = d3.scale.category10();
         
