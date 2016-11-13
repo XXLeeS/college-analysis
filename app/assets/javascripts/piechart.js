@@ -6,8 +6,8 @@ d3.json("/departments/" + current_id + ".json", function(data){
 		return sum + d.value;
 	}, 0);
 	var adj_dep = data.adj_dep;
-	var svg_width = 500;
-	var svg_height = 500;
+	var svg_width = 550;
+	var svg_height = 550;
 
 	var pie = d3.layout.pie()
 				.padAngle(.02);

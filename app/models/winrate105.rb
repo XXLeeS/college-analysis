@@ -9,5 +9,9 @@ class Winrate105 < ActiveRecord::Base
 		Dep105.find(self.opponent).name
 	end
 
+	def rate_percentage
+		self.win_rate * 100
+	end
+
 	belongs_to :dep_105
 end
