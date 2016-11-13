@@ -21,10 +21,16 @@
 @import "bootstrap";
 
 body{
-	background-color: #e0ffff;
+	background-image:url("stardust.png");
 	padding-top: 50px;
 }
 #navbar{
-	background-color: #afeeee;
+	background-color: #3a4750;
 	height: 50px;
+}
+#navbar .navbar-brand{
+	color: #eeeeee;
+}
+#navbar .nav a{
+	color: #eeeeee;
 }
