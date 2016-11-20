@@ -30,7 +30,7 @@ function depnoToName(dep_no){
 }
 
 d3.json("/get_nodes", function(nodes){
-    d3.json("/get_links", function(links){        
+    d3.json("/get_links", function(links){       
         var svg_height = window.innerHeight - $('#navbar').height();
         var svg_width = document.body.clientWidth*3/4;
 
@@ -95,6 +95,7 @@ d3.json("/get_nodes", function(nodes){
         
 //        start drawing graph
         var svg = d3.select("#force")
+                    .remove('h1')
                     .append("svg")
                     .attr("width", svg_width)
                     .attr("height", svg_height)
@@ -189,6 +190,25 @@ d3.json("/get_nodes", function(nodes){
                         .attr("y", function(d){ return d.y; });
         }
         
+//        search function
+        $('#search_submit').click(function(){
+            var dep_no = $('#search').val();
+            if(dep_no){
+                var target;
+                svg_nodes.each(function(d){
+                    if(d.name == dep_no){
+                        target = d3.select(this);
+                    }
+                })
+                var target_x = svg_width/2 - target.data()[0].x;
+                var target_y = svg_height/2 - target.data()[0].y;
+                zoom.translate([target_x, target_y]).scale(1);
+                container.attr("transform", "translate(" + target_x + "," + target_y + ")scale(1)");
+                target.attr("r", 100);
+                target.transition().duration(3000).attr("r", 10);
+            }
+        })
+
 //        threshold function
         var links_original = [];
         for(var i = 0; i<links.length; i++){
@@ -209,24 +229,25 @@ d3.json("/get_nodes", function(nodes){
             start();
         }
 
-//        search function
-        $('#search_submit').click(function(){
-            var dep_no = $('#search').val();
-            if(dep_no){
-                var target;
-                svg_nodes.each(function(d){
-                    if(d.name == dep_no){
-                        target = d3.select(this);
-                    }
+//         group function
+        $('#group input').change(function(){
+            if(this.value == 'cluster'){
+                svg_nodes.attr("fill", function(d, i){
+                    return colors(d.group);
                 })
-                var target_x = svg_width/2 - target.data()[0].x;
-                var target_y = svg_height/2 - target.data()[0].y;
-                zoom.translate([target_x, target_y]).scale(1);
-                container.attr("transform", "translate(" + target_x + "," + target_y + ")scale(1)");
-                target.attr("r", 100);
-                target.transition().duration(3000).attr("r", 10);
+            }
+            else if(this.value == 'field'){
+                svg_nodes.attr("fill", function(d, i){
+                    return colors(d.field);
+                })
+            }
+            else if(this.value == 'level'){
+                svg_nodes.attr("fill", function(d, i){
+                    return colors(d.level);
+                })
             }
         })
+
     })
 })
 }

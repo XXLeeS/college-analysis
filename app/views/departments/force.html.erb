@@ -1,9 +1,18 @@
 <div class="container-fluid" id="network">
 	<div class="row">
 		<div class="col-md-3" id="sidebar">
-			<p> Link threshold 5 <input id="threshold" type="range" id="thersholdSlider" name="points" class="form-control" value="5" min="5" max="20"> 20 </p>
 			<input type="text" id="search" class="form-control" placeholder="輸入系所名稱">
 			<button id="search_submit" class="btn btn-default">Search</button>
+			<p> Link threshold 5 <input id="threshold" type="range" id="thersholdSlider" name="points" class="form-control" value="5" min="5" max="20"> 20 </p>
+			<form id="group">
+				<p>colored by:</p>
+				<input type="radio" name="group" id="cluster" value="cluster" class="form-control" checked>
+				<label for="cluster">Cluster</label>
+				<input type="radio" name="group" id="field" value="field" class="form-control">
+				<label for="field">Field</label>
+				<input type="radio" name="group" id="level" value="level" class="form-control">
+				<label for="level">Level</label>
+			</form>
 			<h4 class="node-name"><a href="#"></a></h4>
 		</div>
 		<div class="col-md-9">
