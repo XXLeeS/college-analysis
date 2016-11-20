@@ -1,4 +1,11 @@
 if($('#force')){
+var spinner = new Spinner({
+    color: '#666',
+    lines: 12,
+    position: 'absolute',
+    top: '50%'
+}).spin(document.getElementById('force'));
+
 var departments;
 var dep_autocomplete = [];
 $.getJSON('/force', function(data){
@@ -94,8 +101,8 @@ d3.json("/get_nodes", function(nodes){
         
         
 //        start drawing graph
+        d3.select("#force *").remove();
         var svg = d3.select("#force")
-                    .remove('h1')
                     .append("svg")
                     .attr("width", svg_width)
                     .attr("height", svg_height)
@@ -174,7 +181,7 @@ d3.json("/get_nodes", function(nodes){
         }
         
         start();
-        
+        spinner.stop();
         
         
 //        define links and nodes dynamic position

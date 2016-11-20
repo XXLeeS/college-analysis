@@ -10,6 +10,9 @@
 	display: inline-block;
 }
 
+#force{
+	min-height: 80vh;
+}
 #force circle{
     opacity: 0.5;    
 }
