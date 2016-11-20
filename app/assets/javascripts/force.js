@@ -1,4 +1,4 @@
-if($('#force')){
+if(window.location.pathname == '/force'){
 var spinner = new Spinner({
     color: '#666',
     lines: 12,
