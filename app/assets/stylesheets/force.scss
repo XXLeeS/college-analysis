@@ -3,7 +3,7 @@
 }
 
 #network #sidebar{
-	
+	min-height: 90%;
 }
 #network #sidebar input{
 	width: auto;
@@ -29,6 +29,9 @@
     font-size: 12px;
 }
 
-#network #legend{
+#network #legend circle{
+	opacity: 0.5;
+}
+#network #legend text{
 	font-size: 12px;
 }
