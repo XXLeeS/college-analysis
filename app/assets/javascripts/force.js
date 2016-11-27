@@ -131,7 +131,7 @@ d3.json("/get_nodes", function(nodes){
                     .insert("circle", "text")
                     .attr("r", 10)
                     .attr("fill", function(d, i){
-                        return colors(d.group);
+                        return colors(d.field);
                     })
                     .on("mouseover", function(d){
                         svg_nodes.classed("node-active", function(n){
@@ -182,8 +182,43 @@ d3.json("/get_nodes", function(nodes){
         
         start();
         spinner.stop();
-        
-        
+
+//        define legend
+        var legend_data = {
+                "field": ["教育領域", "人文及藝術領域", "社會、商業及法律", "科學領域", "工程、製造及營造", "農學領域", "醫藥衛生及社福", "服務領域", "其他"],
+                "level": ["台清交成政", "中字輩", "醫學大學", "國立", "私立前中段", "私立後段"]
+            };
+        var current_legend = legend_data.field;
+        var line_height = 20;
+        var legend_container = d3.select("#legend")
+                                .append("svg")
+                                .attr("height", line_height*12);
+        var legend = legend_container.selectAll("g");
+        function draw_legend(){
+            legend = legend.data(current_legend);
+            legend.exit().remove();
+            legend.enter()
+                    .insert("g")
+                    .attr('transform', function(d, i){
+                        var horz = 0;
+                        var vert = i*line_height;
+                        return 'translate(' + horz + ', ' + vert + ')';
+                    });
+            legend.html("");
+            legend.insert("circle")
+                    .attr("r", 5)
+                    .attr("cx", line_height/2)
+                    .attr("cy", line_height/2)
+                    .attr("fill", function(d, i){
+                        return colors(i+1);
+                    });
+            legend.insert("text")
+                    .attr("x", 20)
+                    .attr("y", line_height-4)
+                    .text(function(d){ return d; })
+        }
+        draw_legend();
+
 //        define links and nodes dynamic position
         force.on("tick", tick);
         function tick(){
@@ -238,21 +273,24 @@ d3.json("/get_nodes", function(nodes){
 
 //         group function
         $('#group input').change(function(){
-            if(this.value == 'cluster'){
-                svg_nodes.attr("fill", function(d, i){
-                    return colors(d.group);
-                })
-            }
-            else if(this.value == 'field'){
+            // if(this.value == 'cluster'){
+            //     svg_nodes.attr("fill", function(d, i){
+            //         return colors(d.cluster);
+            //     })
+            // }
+            if(this.value == 'field'){
+                current_legend = legend_data.field;
                 svg_nodes.attr("fill", function(d, i){
                     return colors(d.field);
                 })
             }
             else if(this.value == 'level'){
+                current_legend = legend_data.level;
                 svg_nodes.attr("fill", function(d, i){
                     return colors(d.level);
                 })
             }
+            draw_legend();
         })
 
     })
