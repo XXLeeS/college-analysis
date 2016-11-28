@@ -3,13 +3,16 @@
 }
 
 #network #sidebar{
-	
+	min-height: 90%;
 }
 #network #sidebar input{
 	width: auto;
 	display: inline-block;
 }
 
+#force{
+	min-height: 80vh;
+}
 #force circle{
     opacity: 0.5;    
 }
@@ -24,4 +27,11 @@
 }
 #force text{
     font-size: 12px;
+}
+
+#network #legend circle{
+	opacity: 0.5;
+}
+#network #legend text{
+	font-size: 12px;
 }

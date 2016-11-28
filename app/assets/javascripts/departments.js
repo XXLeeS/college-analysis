@@ -1,3 +1,5 @@
+if(window.location.pathname == '/departments'){
+
 var dep_autocomplete = [];
 $.getJSON('/departments', function(data){
 	$.each(data, function(i, v){
@@ -13,4 +15,6 @@ $.getJSON('/departments', function(data){
 		source: dep_autocomplete
 	});
 });
+
+}
 

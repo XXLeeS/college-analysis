@@ -17,5 +17,6 @@
 //= require bootstrap-sprockets
 //= require jquery-ui
 //= require vue
+//= require spin
 
 //= require_tree .
