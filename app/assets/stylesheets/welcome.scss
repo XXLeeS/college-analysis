@@ -3,14 +3,34 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .tit{
 	font-family: "Microsoft YaHei";
-	color : #ea9215;
+	color : #a3c6c4;
 	font-weight: bold;
 }
 #tit2{
-	color : #ea9215;
+	color : #a3c6c4;
 	font-weight: bold;
 	font-family: "Microsoft YaHei";
 	font-size: 60px;
 	text-align: center;
 }
+
+.function{
+	color : #a3c6c4;
+	border : solid 1px #fff;
+	height: 300px;
+	text-align: center;
+	margin-top: 60px;
+}
+.function h2{
+	position:relative;
+}
+.fd{
+	// display: inline-block;
+	position: absolute; //對應上一個標籤
+	width: 50px;
+	left: 25px;
+	top: 10px;
+	height: auto;
+}
+
 
