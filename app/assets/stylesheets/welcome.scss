@@ -3,11 +3,11 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .tit{
 	font-family: "Microsoft YaHei";
-	color : #a3c6c4;
+	color : #272923;
 	font-weight: bold;
 }
 #tit2{
-	color : #a3c6c4;
+	color : #272923;
 	font-weight: bold;
 	font-family: "Microsoft YaHei";
 	font-size: 60px;
@@ -15,11 +15,12 @@
 }
 
 .function{
-	color : #a3c6c4;
-	border : solid 1px #fff;
+	color : #272923;
+	border : solid 1px black;
 	height: 300px;
 	text-align: center;
-	margin-top: 60px;
+	margin-top: 50px;
+	margin-bottom: 10px;
 }
 .function h2{
 	position:relative;
