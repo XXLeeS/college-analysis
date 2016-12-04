@@ -3,7 +3,12 @@
 		<div class="col-md-3" id="sidebar">
 			<input type="text" id="search" class="form-control" placeholder="輸入系所名稱">
 			<button id="search_submit" class="btn btn-default">Search</button>
-			<p> Link threshold 5 <input id="threshold" type="range" id="thersholdSlider" name="points" class="form-control" value="5" min="5" max="20"> 20 </p>
+			<p>Link threshold</p>
+			
+			<div class="range-slider">
+				<input id="threshold" type="range" id="thersholdSlider" name="points" class="range-slider__range" value="5" min="5" max="20">
+				<span class="range-slider__value">5</span>
+			</div>
 			<form id="group">
 				<p>colored by:</p>
 				<!-- <input type="radio" name="group" id="cluster" value="cluster" class="form-control">
@@ -54,6 +59,7 @@
 		</div>
 		<div class="col-md-9">
 			<div id="force">
+				<h4 id="spinner_text">若載入過久，請重新整理</h4>
 			</div>
 		</div>
 	</div>

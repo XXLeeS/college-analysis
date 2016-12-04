@@ -41,7 +41,9 @@ d3.json("/get_nodes", function(nodes){
         var svg_height = window.innerHeight - $('#navbar').height();
         var svg_width = document.body.clientWidth*3/4;
 
-        var colors = d3.scale.category10();
+        var colors = d3.scale.ordinal()
+                        .domain([1, 2, 3, 4, 5, 6, 7, 8, 9])
+                        .range(["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#bcbd22", "#17becf"])
         
         var force = d3.layout.force()
                         .size([svg_width, svg_height])
@@ -182,6 +184,7 @@ d3.json("/get_nodes", function(nodes){
         
         start();
         spinner.stop();
+        $('#spinner_text').remove();
 
 //        define legend
         var legend_data = {
