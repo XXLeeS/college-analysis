@@ -42,13 +42,14 @@ d3.json("/get_nodes", function(nodes){
         var svg_width = document.body.clientWidth*3/4;
 
         var colors = d3.scale.ordinal()
-                        .domain([1, 2, 3, 4, 5, 6, 7, 8, 9])
-                        .range(["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#bcbd22", "#17becf"])
+                        .domain([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+                        .range(["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#bcbd22", "#17becf", "#111111"]);
+
         
         var force = d3.layout.force()
                         .size([svg_width, svg_height])
                         .linkDistance(50)
-                        .charge([-200]);
+                        .charge([-1000]);
 
         
 //        check whether two nodes linked
@@ -276,11 +277,6 @@ d3.json("/get_nodes", function(nodes){
 
 //         group function
         $('#group input').change(function(){
-            // if(this.value == 'cluster'){
-            //     svg_nodes.attr("fill", function(d, i){
-            //         return colors(d.cluster);
-            //     })
-            // }
             if(this.value == 'field'){
                 current_legend = legend_data.field;
                 svg_nodes.attr("fill", function(d, i){
@@ -295,7 +291,6 @@ d3.json("/get_nodes", function(nodes){
             }
             draw_legend();
         })
-
     })
 })
 }
