@@ -18,5 +18,6 @@
 //= require jquery-ui
 //= require vue
 //= require spin
+//= require range
 
 //= require_tree .

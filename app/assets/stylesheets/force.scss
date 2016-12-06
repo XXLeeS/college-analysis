@@ -13,6 +13,12 @@
 #force{
 	min-height: 80vh;
 }
+#force #spinner_text{
+	position: absolute;
+	top: 60%;
+	width: 100%;
+	text-align: center;
+}
 #force circle{
     opacity: 0.5;    
 }
