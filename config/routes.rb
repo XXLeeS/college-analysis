@@ -56,7 +56,7 @@ Rails.application.routes.draw do
 
   root to: 'welcome#index'
 
-  resources :departments, :only => [:index, :show] do
+  resources :departments, only: [:index, :show], defaults: { format: 'html' } do
     collection do
       # get :enemies
       # post :enemies, controller => 'enemy_submit'
