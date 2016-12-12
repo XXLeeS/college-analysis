@@ -1,0 +1,24 @@
+<div class="container">
+	<div class="row">
+		<table class="table">
+			<thead>
+			<tr>
+				<th>name</th>
+				<th>mu</th>
+				<th>sigma</th>
+				<th>action</th>
+			</tr>
+			</thead>
+			<tbody>
+			<% @departments.each do |d| %>
+				<tr>
+					<td><%= link_to d.name, departments_path(d) %></td>
+					<td></td>
+					<td></td>
+					<td>add to graph</td>
+				</tr>
+			<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

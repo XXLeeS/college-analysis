@@ -53,6 +53,10 @@ class DepartmentsController < ApplicationController
 		end
 	end
 
+	def rank
+		@departments = Dep105.all.order(:dep_no)
+	end
+
 	private
 
 	def collegeNo_to_name(college_no)

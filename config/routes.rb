@@ -68,4 +68,5 @@ Rails.application.routes.draw do
   get '/get_nodes' => 'departments#get_nodes', defaults: { format: 'json' }
   get '/get_links' => 'departments#get_links', defaults: { format: 'json' }
   get '/force' => 'departments#force'
+  get '/rank' => 'departments#rank'
 end
