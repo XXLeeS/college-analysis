@@ -46,11 +46,10 @@ d3.json("/departments.json", function(dep){
         .scale(xScale)
         .orient("bottom")
         // .tickValues(d3.range(d3.min(rscore), d3.max(rscore), 5))
-        // .tickFormat(function(d, i){ return i* })
 
     var colorScale = d3.scale.linear()
             .domain([d3.min(heights), d3.max(heights)])
-            .range([d3.rgb("steelblue").brighter(), d3.rgb("steelblue").darker()]);
+            .range([d3.rgb("#16A085").brighter(), d3.rgb("#16A085").darker()]);
 
 	var rect = svg.append("g")
 					.selectAll("rect")

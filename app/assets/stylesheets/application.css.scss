@@ -12,7 +12,6 @@
  *
  *= require normalize-rails
  *= require jquery-ui
- *= require flat-ui
  *= require font-awesome
  *= require_self
  *= require_tree .
@@ -23,11 +22,27 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "flat-ui";
+
+@import "variables";
+
+a{
+	text-decoration: none;
+}
 
 body{
+	background-color: #EEE;
 	padding-top: 50px;
 }
 #navbar{
-	// background-color: #3a4750;
+	background-color: $dark_gray;
 	height: 50px;
+	.navbar-header a{
+		color: #fff;
+		font-weight: bold;
+	}
+}
+
+footer p{
+	margin: 0;
 }

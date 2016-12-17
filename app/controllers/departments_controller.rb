@@ -28,6 +28,7 @@ class DepartmentsController < ApplicationController
 		@adj_dep = @adj_raw.map{|r| @department.dep_no == r.source ? { :dep_no => r.target, :name => depNo_to_name(r.target), :value => r.value} : { :dep_no => r.source, :name => depNo_to_name(r.source), :value => r.value} }
 
 		@win_rate = Winrate105.where('dep = (?) AND total >= 5', @department.dep_no)
+		@win_rate = @win_rate.sort_by(&:total).reverse
 	end
 
 	def get_nodes

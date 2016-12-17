@@ -27,7 +27,7 @@ d3.json("/departments/" + current_id + ".json", function(data){
 						.innerRadius(radius - 30);
 	var colors = d3.scale.linear().domain([0, piedata.length])
 					      .interpolate(d3.interpolateHcl)
-					      .range([d3.rgb("#00F"), d3.rgb('#F0F')]);
+					      .range([d3.rgb("#16A085").brighter(), d3.rgb("#34495E").darker()]);
 
 	var svg = d3.select("#piechart")
 				.append("svg")

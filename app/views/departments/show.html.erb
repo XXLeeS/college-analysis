@@ -1,75 +1,103 @@
-<div class="container" id="show">
+<div class="container" id="dep_show">
 	<div class="row">
 		<h1><%= @department.name %></h1>
 	</div>
 	<div class="row">
 		<div class="col-md-5">
-		<div class="block">
-			<br>
-			<table class="table">
-				<tr>
-					<td>正取人數</td>
-					<td><%= @department.max_num %></td>
-				</tr>
-				<tr>
-					<td>備取人數</td>
-					<td><%= @department.waiting_num %></td>
-				</tr>
-				<tr>
-					<td>實際錄取人數</td>
-					<td><%= @department.real_num %></td>
-				</tr>
-				<tr>
-					<td>最低備取名次</td>
-					<td><%= @department.last_text %></td>
-				</tr>
-				<tr>
-					<td>預測備取名次</td>
-					<td><%= @department.predict_text %></td>
-				</tr>
-			</table>
+		<div class="panel panel-custom">
+			<div class="panel-heading">基本資料</div>
+			<div class="panel-body">
+				<table class="table">
+					<tr>
+						<td>正取人數</td>
+						<td><%= @department.max_num %></td>
+					</tr>
+					<tr>
+						<td>備取人數</td>
+						<td><%= @department.waiting_num %></td>
+					</tr>
+					<tr>
+						<td>實際錄取人數</td>
+						<td><%= @department.real_num %></td>
+					</tr>
+					<tr>
+						<td>最低備取名次</td>
+						<td><%= @department.last_text %></td>
+					</tr>
+					<tr>
+						<td>預測備取名次</td>
+						<td><%= @department.predict_text %></td>
+					</tr>
+				</table>
+			</div>
 		</div>
 		</div>
 
 		<div class="col-md-7">
-		<div class="block">
-			<div id="histogram">
-				<!-- histogram is inserted here -->
+		<div class="panel panel-custom">
+			<div class="panel-heading">TrueSkill</div>
+			<div class="panel-body">
+				<div class="col-md-8">
+					<div id="histogram">
+						<!-- histogram is inserted here -->
+					</div>
+				</div>
+				<div class="col-md-4">
+					<table class="table">
+					<tr>
+						<td>Rscore</td>
+						<td><%= @department.ts_rscore %></td>
+					</tr>
+					<tr>
+						<td>Mu</td>
+						<td><%= @department.ts_mu %></td>
+					</tr>
+					<tr>
+						<td>sigma</td>
+						<td><%= @department.ts_sigma %></td>
+					</tr>
+				</table>
+				</div>
 			</div>
 		</div>
 		</div>
 
 		<div class="col-md-6">
-		<div class="block">
-			<div id="piechart">
-				<!-- pie chart is inserted here -->
+		<div class="panel panel-custom">
+			<div class="panel-heading">交叉分析</div>
+			<div class="panel-body">
+				<div id="piechart">
+					<!-- pie chart is inserted here -->
+				</div>
 			</div>
 		</div>
 		</div>
 
 		<div class="col-md-6">
-		<div class="bolck">
-			<h2>對戰紀錄</h2>
-			<table class="table">
-			<thead>
-				<tr>
-					<th>opponent</th>
-					<th>win</th>
-					<th>total</th>
-					<th>rate</th>
-				</tr>
-			</thead>
-			<tbody>
-			<% @win_rate.each do |w| %>
-				<tr>
-					<td><%= link_to w.opponent_name, department_path(w.opponent) %></td>
-					<td><%= w.win %></td>
-					<td><%= w.total %></td>
-					<td><%= w.rate_percentage %> %</td>
-				</tr>
-			<% end %>
-			</tbody>
-			</table>
+		<div class="panel panel-custom">
+			<div class="panel-heading">交戰紀錄</div>
+			<div class="panel-body">
+				<table class="table">
+				<thead>
+					<tr>
+						<th>系所名稱</th>
+						<th>勝場</th>
+						<th>總場數</th>
+						<th>勝率</th>
+					</tr>
+				</thead>
+				<tbody>
+				<% @win_rate.each do |w| %>
+					<tr>
+						<td><%= link_to w.opponent_name, department_path(w.opponent) %></td>
+						<td><%= w.win %></td>
+						<td><%= w.total %></td>
+						<td><%= "%.2f" % w.rate_percentage %> %</td>
+					</tr>
+				<% end %>
+				</tbody>
+				</table>
+			</div>
 		</div>
 		</div>
 
