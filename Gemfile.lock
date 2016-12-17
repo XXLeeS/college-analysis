@@ -64,6 +64,7 @@ GEM
     debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (2.7.0)
+    flat-ui-rails (0.0.2)
     font-awesome-rails (4.6.3.0)
       railties (>= 3.2, < 5.1)
     globalid (0.3.7)
@@ -169,6 +170,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   d3-rails (~> 3.5.17)
+  flat-ui-rails
   font-awesome-rails
   jbuilder (~> 2.0)
   jquery-rails

@@ -12,12 +12,12 @@
  *
  *= require normalize-rails
  *= require jquery-ui
+ *= require flat-ui
  *= require font-awesome
  *= require_self
  *= require_tree .
 
  *= require range
- *= require flat-ui
  
  */
 
@@ -25,25 +25,9 @@
 @import "bootstrap";
 
 body{
-	//background-image:url("bg024_08.gif");
-	//background-color: #6c7a89;
-	background-color: #fff;
 	padding-top: 50px;
 }
 #navbar{
-	background-color: #3a4750;//上面那條
+	// background-color: #3a4750;
 	height: 50px;
-}
-#navbarbot{
-	background-color: #3a4750;
-	height: 50px;
-}
-#navbarbot #bottext{
-	color: #eeeeee;
-}
-#navbar .navbar-brand{
-	color: #eeeeee;
-}
-#navbar .nav a{
-	color: #eeeeee;
 }

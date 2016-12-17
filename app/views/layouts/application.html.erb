@@ -8,10 +8,12 @@
 </head>
 <body>
 
-<%= render 'layouts/navbar' %>
+	<%= render 'layouts/navbar' %>
 
-<%= yield %>
+	<%= yield %>
 
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= render 'layouts/footer' %>
+
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>
 </html>

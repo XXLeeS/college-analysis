@@ -16,6 +16,14 @@ class Dep105 < ActiveRecord::Base
 		end
 	end
 
+	def predict_text
+		if self.predict_num.floor > 0
+			"備取" + (String(self.predict_num.floor) rescue nil)
+		else
+			"正取"
+		end
+	end
+
 	def field_text
 		field_name = {
 			0 => "無資料",

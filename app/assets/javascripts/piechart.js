@@ -16,7 +16,6 @@ d3.json("/departments/" + current_id + ".json", function(data){
 		return d.value;
 	})
 	var piedata = pie(adj_dep);
-	console.log(piedata);
 
 	var radius = 200;
 	var labelRadius = 230;

@@ -1,67 +1,80 @@
-<div class="container">
+<div class="container" id="show">
 	<div class="row">
 		<h1><%= @department.name %></h1>
 	</div>
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-md-5">
 		<div class="block">
-			<table>
+			<br>
+			<table class="table">
 				<tr>
 					<td>正取人數</td>
-					<td></td>
+					<td><%= @department.max_num %></td>
 				</tr>
 				<tr>
 					<td>備取人數</td>
-					<td></td>
+					<td><%= @department.waiting_num %></td>
+				</tr>
+				<tr>
+					<td>實際錄取人數</td>
+					<td><%= @department.real_num %></td>
 				</tr>
 				<tr>
 					<td>最低備取名次</td>
 					<td><%= @department.last_text %></td>
 				</tr>
 				<tr>
-					<td>實際錄取人數</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>預測錄取人數</td>
-					<td></td>
+					<td>預測備取名次</td>
+					<td><%= @department.predict_text %></td>
 				</tr>
 			</table>
 		</div>
 		</div>
 
-		<div class="col-md-8">
-
+		<div class="col-md-7">
+		<div class="block">
+			<div id="histogram">
+				<!-- histogram is inserted here -->
+			</div>
 		</div>
-	</div>
-	<div class="row">
+		</div>
+
 		<div class="col-md-6">
+		<div class="block">
 			<div id="piechart">
 				<!-- pie chart is inserted here -->
 			</div>
 		</div>
+		</div>
+
+		<div class="col-md-6">
+		<div class="bolck">
+			<h2>對戰紀錄</h2>
+			<table class="table">
+			<thead>
+				<tr>
+					<th>opponent</th>
+					<th>win</th>
+					<th>total</th>
+					<th>rate</th>
+				</tr>
+			</thead>
+			<tbody>
+			<% @win_rate.each do |w| %>
+				<tr>
+					<td><%= link_to w.opponent_name, department_path(w.opponent) %></td>
+					<td><%= w.win %></td>
+					<td><%= w.total %></td>
+					<td><%= w.rate_percentage %> %</td>
+				</tr>
+			<% end %>
+			</tbody>
+			</table>
+		</div>
+		</div>
+
 	</div>
 	<div class="row">
-	<h2>對戰紀錄</h2>
-		<table class="table">
-		<thead>
-			<tr>
-				<th>opponent</th>
-				<th>win</th>
-				<th>total</th>
-				<th>rate</th>
-			</tr>
-		</thead>
-		<tbody>
-		<% @win_rate.each do |w| %>
-			<tr>
-				<td><%= w.opponent_name %></td>
-				<td><%= w.win %></td>
-				<td><%= w.total %></td>
-				<td><%= w.rate_percentage %> %</td>
-			</tr>
-		<% end %>
-		</tbody>
-		</table>
+	
 	</div>
 </div>

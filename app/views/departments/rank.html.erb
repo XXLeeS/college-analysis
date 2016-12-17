@@ -4,6 +4,7 @@
 			<thead>
 			<tr>
 				<th>name</th>
+				<th>Rscore</th>
 				<th>mu</th>
 				<th>sigma</th>
 				<th>action</th>
@@ -12,9 +13,10 @@
 			<tbody>
 			<% @departments.each do |d| %>
 				<tr>
-					<td><%= link_to d.name, departments_path(d) %></td>
-					<td></td>
-					<td></td>
+					<td><%= link_to d.name, department_path(d) %></td>
+					<td><%= d.ts_rscore %></td>
+					<td><%= d.ts_mu %></td>
+					<td><%= d.ts_sigma %></td>
 					<td>add to graph</td>
 				</tr>
 			<% end %>
