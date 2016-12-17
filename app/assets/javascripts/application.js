@@ -19,5 +19,6 @@
 //= require vue
 //= require spin
 //= require range
+//= require flat-ui
 
 //= require_tree .

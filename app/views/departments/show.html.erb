@@ -1,14 +1,37 @@
 <div class="container">
 	<div class="row">
 		<h1><%= @department.name %></h1>
+	</div>
+	<div class="row">
 		<div class="col-md-4">
-			<h4>最低備取名次：<%= @department.last_text %></h4>
+		<div class="block">
+			<table>
+				<tr>
+					<td>正取人數</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>備取人數</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>最低備取名次</td>
+					<td><%= @department.last_text %></td>
+				</tr>
+				<tr>
+					<td>實際錄取人數</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>預測錄取人數</td>
+					<td></td>
+				</tr>
+			</table>
 		</div>
-		<div class="col-md-4">
-			<h4>系所領域：<%= @department.field_text %></h4>
 		</div>
-		<div class="col-md-4">
-			<h4>最低錄取分數：<%= @department.lowest_text %></h4>
+
+		<div class="col-md-8">
+
 		</div>
 	</div>
 	<div class="row">
