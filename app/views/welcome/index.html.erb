@@ -1,29 +1,42 @@
-<div class="container">
-	<div class="row ">
-		<br />
-		<br />
-		<br />
-		<h1 class="text-center tit">全國最大的大專院校系所分析</h1></br></br><p id=tit2>上線啦！</p>
+<div class="container-fluid" id="index">
+	<div class="row flexbox-center" id="top">
+		<div>
+			<h1 class="name">大專院校系所分析系統</h1>
+			<br>
+			<p class="slogan">不再選錯系，不再變系邊</p>
+		</div>
 	</div>
+	<p class="text-center" style="font-size: 20px; margin: 10px 0;">我們提供</p>
+	<br>
 	<div class="row">
-		<div class="col-md-6 function " >
-			<h2>Department</h2>
+	<div style="padding: 0 100px;">
+		<div class="col-md-4">
+		<div class="one-function">
+			<h4>詳盡的系所資料</h4>
+			<p>所有資料與分析結果優雅的出現，搭配精美的圖表，水啦！</p>
+			<%= link_to departments_path, class: "goto" do %>
+				前往頁面 <i class="fa fa-chevron-right" aria-hidden="true"></i>
+			<% end %>
 		</div>
-		<div class="col-md-6 function ">
-			<h2>Network</h2>
 		</div>
-		<div class="col-md-6 function">
-			<h2>Prediction</h2>
+		<div class="col-md-4">
+		<div class="one-function">
+			<h4>酷炫的網路圖</h4>
+			<p>系所之間的愛恨情仇一目了然，且提供多項功能，酷啦！</p>
+			<%= link_to force_path, class: "goto" do %>
+				前往頁面 <i class="fa fa-chevron-right" aria-hidden="true"></i>
+			<% end %>
 		</div>
-		<div class="col-md-6 function">
-			<h2>Ranking</h2>
+		</div>
+		<div class="col-md-4">
+		<div class="one-function" style="border-right: none;">
+			<h4>精準的TrueSkill分數</h4>
+			<p>使用與Xbox相同的演算法，馬上決定誰才是老大，準啦！</p>
+			<%= link_to rank_path(1), class: "goto" do %>
+				前往頁面 <i class="fa fa-chevron-right" aria-hidden="true"></i>
+			<% end %>
+		</div>
 		</div>
 	</div>
-<div class="container">	
-	<div class="row">
-		<br />
-		<br />
-		<br />
 	</div>
-</div>	
 </div>

@@ -25,6 +25,10 @@
 @import "flat-ui";
 
 @import "variables";
+@import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
+html *{
+	font-family: 'Noto Sans TC', sans-serif;
+}
 
 a{
 	text-decoration: none;

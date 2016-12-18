@@ -1,29 +1,59 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.tit{
-	font-family: "Microsoft YaHei";
-	color : #272923;
-	font-weight: bold;
-}
-#tit2{
-	color : #272923;
-	font-weight: bold;
-	font-family: "Microsoft YaHei";
-	font-size: 60px;
-	text-align: center;
+@import "variables";
+#index{
+	#top{
+		height: 95vh;
+		background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0), #eee), image-url("ntu.png") ;
+		background-position: center;
+		background-size: cover;
+		.name{
+			font-size: 48px;
+			text-align: center;
+		}
+		.slogan{
+			font-size: 24px;
+			text-align: center;
+		}
+	}
+	.one-function{
+		height: 200px;
+		position: relative;
+		padding-right: 10px;
+		border-right: #333 solid 1px;
+		h4{
+			font-weight: normal;
+			font-size: 28px;
+		}
+		p{
+			font-size: 18px;
+		}
+		.goto{
+			position: absolute;
+			bottom: 5px;
+			right: 10px;
+			padding: 10px 20px;
+			border: $light_green solid 2px;
+			border-radius: 5px;
+			font-weight: bold;
+			&:hover{
+				background-color: $light_green;
+				color: #fff;
+			}
+		}
+	}
 }
 
-.function{
-	color : #272923;
-	border : solid 1px black;
-	height: 300px;
-	text-align: center;
-	margin-top: 50px;
-	margin-bottom: 10px;
+.flexbox-center{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    height: 100%;
 }
-.function h2{
-	position:relative;
-}
-
-
