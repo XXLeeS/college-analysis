@@ -1,0 +1,16 @@
+@import "variables";
+#rank_show{
+	.sort{
+		cursor: pointer;
+		&:hover{
+			text-decoration: underline;
+		}
+		&.asc::after{
+			content: "▲";
+		}
+		&.desc::after {
+			content: "▼";
+		}
+	}
+	
+}

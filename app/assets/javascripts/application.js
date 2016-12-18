@@ -19,5 +19,6 @@
 //= require vue
 //= require spin
 //= require range
+//= require list
 
 //= require_tree .

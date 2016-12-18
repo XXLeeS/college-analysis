@@ -1,23 +1,35 @@
-<div class="container">
+<div class="container" id="rank_show">
 	<div class="row">
-		<table class="table">
+		<div class="btn-group">
+			<button class="btn btn-inverse dropdown-toggle" type="button" data-toggle="dropdown">
+		    選擇領域<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu dropdown-menu-inverse" role="menu">
+		    <% @fields.each_value do |f| %>
+				<li><%= link_to f, rank_path(@fields.key(f)) %></li>
+		    <% end %>
+			</ul>
+		</div>
+		<table class="table" id="table">
 			<thead>
 			<tr>
-				<th>name</th>
-				<th>Rscore</th>
-				<th>mu</th>
-				<th>sigma</th>
-				<th>action</th>
+				<th class="sort" data-sort="rank">rank</th>
+				<th class="sort" data-sort="name">name</th>
+				<th class="sort" data-sort="rscore">Rscore</th>
+				<th class="sort" data-sort="mu">mu</th>
+				<th class="sort" data-sort="sigma">sigma</th>
+				<!-- <th>action</th> -->
 			</tr>
 			</thead>
-			<tbody>
-			<% @departments.each do |d| %>
+			<tbody class="list">
+			<% @departments.each_with_index do |d, i| %>
 				<tr>
-					<td><%= link_to d.name, department_path(d) %></td>
-					<td><%= d.ts_rscore %></td>
-					<td><%= d.ts_mu %></td>
-					<td><%= d.ts_sigma %></td>
-					<td>add to graph</td>
+					<td class="rank"><%= i+1 %></td>
+					<td class="name"><%= link_to d.name, department_path(d) %></td>
+					<td class="rscore"><%= "%.4f" % d.ts_rscore %></td>
+					<td class="mu"><%= "%.4f" % d.ts_mu %></td>
+					<td class="sigma"><%= "%.4f" % d.ts_sigma %></td>
+					<!-- <td>add to graph</td> -->
 				</tr>
 			<% end %>
 			</tbody>

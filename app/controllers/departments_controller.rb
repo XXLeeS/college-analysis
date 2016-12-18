@@ -55,7 +55,23 @@ class DepartmentsController < ApplicationController
 	end
 
 	def rank
-		@departments = Dep105.all.order(:dep_no)
+		@fields = {
+			0 => "全部領域",
+			1 => "教育領域",
+			2 => "人文及藝術領域",
+			3 => "社會科學、商業及法律領域",
+			4 => "科學領域",
+			5 => "工程、製造及營造領域",
+			6 => "農學領域",
+			7 => "醫藥衛生及社福領域",
+			8 => "服務領域",
+			9 => "其他"
+		}
+		if params[:field] == 0
+			@departments = Dep105.all.order(:ts_rscore).reverse
+		else
+			@departments = Dep105.where('field = (?)', params[:field]).order(:ts_rscore).reverse
+		end
 	end
 
 	private
