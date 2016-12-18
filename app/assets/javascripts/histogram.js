@@ -1,4 +1,4 @@
-if($('#histogram')){
+if($('#histogram').length){
 var current_path = window.location.pathname.split("/");
 var current_id = current_path[current_path.length-1];
 
@@ -27,9 +27,6 @@ d3.json("/departments.json", function(dep){
 				.frequency(true);
 
 	var hist_data = histogram(rscore);
-
-	console.log(hist_data)
-
 
 	var xScale = d3.scale.linear()
                 .domain([d3.min(rscore), d3.max(rscore)])
