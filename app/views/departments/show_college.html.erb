@@ -1,9 +1,28 @@
-<div class="container" id="show">
-	<div class="row outline">
-	<% @departments.each do |d| %>
-		<div class="col-md-12 one-depart">
-			<%= link_to d.short_name, department_path(d) %>
+<div class="container" id="dep_showcollege">
+	<h1><%= @college.name %></h1>
+	<div class="row">
+		<% @departments.each do |d| %>
+		<div class="col-md-12">
+			<%= link_to department_path(d) do %>
+			<div class="row one-dep">
+				<div class="col-xs-9">
+					<span class="name"><%= d.short_name %></span>
+				</div>
+				<div class="col-xs-1 data">
+					<p class="number"><%= "%.2f" % d.ts_rscore %></p>
+					<p class="description">Rscore</p>
+				</div>
+				<div class="col-xs-1 data">
+					<p class="number"><%= "%.2f" % d.ts_mu %></p>
+					<p class="description">Mu</p>
+				</div>
+				<div class="col-xs-1 data">
+					<p class="number"><%= "%.2f" % d.ts_sigma %></p>
+					<p class="description">Sigma</p>
+				</div>
+			</div>
+			<% end %>
 		</div>
-	<% end %>
+		<% end %>
 	</div>
 </div>

@@ -1,21 +1,4 @@
 @import "variables";
-
-#show .outline{
-	margin-top: 10px;
-	border : solid 2px black; 
-}
-#show .one-depart{
-	border-bottom: solid 2px black;
-}
-#show .one-depart a{
-	color: #272923;
-	font-size : 30px;
-}
-.outline{
-	border : solid 2px black;
-}
-
-
 #dep_index{
 	#search{
 		margin: 20px 0 20px 0;
@@ -37,6 +20,41 @@
 			background-color: $light_green;
 			color: #fff;
 		}
+	}
+}
+
+#dep_showcollege{
+	.one-dep{
+		padding: 10px;
+		background-color: #fff;
+		border-bottom: #ddd 1px solid;
+		font-size: 18px;
+		color: #333;
+		.name{
+			font-size: 18px;
+		}
+		.data{
+			border-right: #ddd 1px solid;
+			text-align: center;
+			&:last-child{
+				border-right: none;
+			}
+			.number{
+				font-weight: bold;
+			}
+			.description{
+				color: #999;
+				font-size: 10px;
+			}
+		}
+		&:hover{
+			background-color: $light_green;
+			color: #fff;
+			.description{
+				color: #fff;
+			}
+		}
+
 	}
 }
 
