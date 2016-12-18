@@ -67,7 +67,8 @@ class DepartmentsController < ApplicationController
 			8 => "服務領域",
 			9 => "其他"
 		}
-		if params[:field] == 0
+		@this_field = params[:field].to_i
+		if @this_field == 0
 			@departments = Dep105.all.order(:ts_rscore).reverse
 		else
 			@departments = Dep105.where('field = (?)', params[:field]).order(:ts_rscore).reverse
