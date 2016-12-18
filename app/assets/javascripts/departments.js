@@ -1,7 +1,7 @@
 if(window.location.pathname == '/departments'){
 
 var dep_autocomplete = [];
-$.getJSON('/departments', function(data){
+$.getJSON('/departments.json', function(data){
 	$.each(data, function(i, v){
 		dep_autocomplete.push({
 			label: v.name,
