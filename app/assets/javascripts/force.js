@@ -151,7 +151,7 @@ d3.json("/get_nodes", function(nodes){
                         showtext(d);
                         d3.select(this).classed("node-active", true);
                         
-                        $(".node-name a").text(depnoToName(d.name))
+                        $("#node_name a").text(depnoToName(d.name))
                                         .attr("href", "/departments/" + d.name);
                     })
                     .on("mouseout", function(d){

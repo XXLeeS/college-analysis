@@ -1,43 +1,77 @@
+@import "variables";
 #network{
 	overflow: hidden;
+	#sidebar{
+		height: 90vh;
+		border-right: #ccc solid 3px;
+		#node_name{
+			margin-top: 10px;
+			font-size: 18px;
+		}
+		.block{
+			padding: 5px 0;
+		}
+		input{
+			width: auto;
+			display: inline-block;
+		}
+		input[type="radio"]{
+			display: none;
+			& + label{
+				display: inline-block;
+				padding: 3px;
+				border: 2px solid $light-green;
+				color: $light-green;
+				font-weight: normal;
+				cursor: pointer;
+			}
+			&:checked + label{
+				background-color: $light-green;
+				color: #fff;
+			}
+		}
+		#legend{
+			circle{
+				opacity: 0.5;
+			}
+			text{
+				font-size: 12px;
+			}
+		}
+	}
 }
 
-#network #sidebar{
-	min-height: 90%;
-}
-#network #sidebar input{
-	width: auto;
-	display: inline-block;
+.col-md-9{
+	padding: 0;
 }
 
 #force{
 	min-height: 80vh;
-}
-#force #spinner_text{
-	position: absolute;
-	top: 60%;
-	width: 100%;
-	text-align: center;
-}
-#force circle{
-    opacity: 0.5;    
-}
-#force circle.node-active{
-    opacity: 1;
-}
-#force line{
-    stroke-opacity: 0.3;
-}
-#force line.link-active{
-    stroke-opacity: 0.7;
-}
-#force text{
-    font-size: 12px;
+	padding: 0;
+	background-color: #fff;
+	#spinner_text{
+		position: absolute;
+		top: 60%;
+		width: 100%;
+		text-align: center;
+	}
+	circle{
+	    opacity: 0.5;
+	    &.node-active{
+		    opacity: 1;
+		}  
+	}
+	line{
+	    stroke-opacity: 0.3;
+	    &.link-active{
+		    stroke-opacity: 0.7;
+		}
+	}
+	text{
+	    font-size: 12px;
+	}
 }
 
-#network #legend circle{
-	opacity: 0.5;
-}
-#network #legend text{
-	font-size: 12px;
+footer{
+	margin-top: 0;
 }

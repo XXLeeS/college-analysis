@@ -1,25 +1,33 @@
 <div class="container-fluid" id="network">
 	<div class="row">
 		<div class="col-md-3" id="sidebar">
-			<input type="text" id="search" class="form-control" placeholder="輸入系所名稱">
-			<button id="search_submit" class="btn btn-default">Search</button>
-			<p>Link threshold</p>
-			
-			<div class="range-slider">
-				<input id="threshold" type="range" id="thersholdSlider" name="points" class="range-slider__range" value="5" min="5" max="20">
-				<span class="range-slider__value">5</span>
+			<p id="node_name"><a href="#">　</a></p>
+			<div class="block">
+				<input type="text" id="search" class="form-control" placeholder="輸入系所名稱">
+				<button id="search_submit" class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
 			</div>
-			<form id="group">
-				<p>colored by:</p>
-				<!-- <input type="radio" name="group" id="cluster" value="cluster" class="form-control">
-				<label for="cluster">Cluster</label> -->
-				<input type="radio" name="group" id="field" value="field" class="form-control" checked>
-				<label for="field">Field</label>
-				<input type="radio" name="group" id="level" value="level" class="form-control">
-				<label for="level">Level</label>
-			</form>
-			<h4 class="node-name"><a href="#">　</a></h4>
-			<div id="legend">
+			<div class="block">
+				<span>連結閾值</span>
+				<div class="range-slider">
+					<input id="threshold" type="range" id="thersholdSlider" name="points" class="range-slider__range" value="5" min="5" max="20">
+					<span class="range-slider__value">5</span>
+				</div>
+			</div>
+
+			<div class="block">
+				<form id="group">
+					<span>分類條件　</span>
+					<!-- <input type="radio" name="group" id="cluster" value="cluster" class="form-control">
+					<label for="cluster">Cluster</label> -->
+					<input type="radio" name="group" id="field" value="field" class="form-control" checked>
+					<label for="field">科系領域</label> 
+					<input type="radio" name="group" id="level" value="level" class="form-control">
+					<label for="level">學校分級</label>
+				</form>
+			</div>
+			
+			<div id="legend" class="block">
+				<!-- legend inseted here -->
 			</div>
 
 			<span class="info">
@@ -27,35 +35,6 @@
 					<i class="fa fa-question-circle fa-lg" aria-hidden="true"></i>
 				</a>
 			</span>
-			<div id="infoModal" class="modal fade" role="dialog">
-			  <div class="modal-dialog">
-
-			    <!-- Modal content-->
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal">&times;</button>
-			        <h4 class="modal-title">使用說明</h4>
-			      </div>
-			      <div class="modal-body">
-			        <h4>這是什麼？</h4>
-					<ul>
-						<li>圖中每個點代表一個一間系所，連結代表共同被選取的次數，越粗則次數越多</li>
-					</ul>
-
-					<h4>操作說明：</h4>
-					<ul>
-						<li>搜尋系所會將畫面中心移至該系所，並將點放大</li>
-						<li>調整連結的threshold，過濾掉較弱的連結</li>
-						<li>調整分群，以不同的指標為系所上色</li>
-					</ul>
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			      </div>
-			    </div>
-
-			  </div>
-			</div>
 		</div>
 		<div class="col-md-9">
 			<div id="force">
@@ -63,4 +42,30 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+<div id="infoModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">使用說明</h4>
+      </div>
+      <div class="modal-body">
+        <h4>這是什麼？</h4>
+		<ul>
+			<li>圖中每個點代表一個一間系所，連結代表共同被選取的次數，越粗則次數越多</li>
+		</ul>
+		<h4>操作說明：</h4>
+		<ul>
+			<li>搜尋系所會將畫面中心移至該系所，並將點放大</li>
+			<li>調整連結的threshold，過濾掉較弱的連結</li>
+			<li>調整分群，以不同的指標為系所上色</li>
+		</ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
