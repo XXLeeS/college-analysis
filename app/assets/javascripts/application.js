@@ -19,5 +19,6 @@
 //= require spin
 //= require range
 //= require list
+//= require box
 
 //= require_tree .

@@ -2,7 +2,7 @@ class RanksController < ApplicationController
 	before_action :get_fields
 
 	def index
-
+		@departments = Dep105.all.order(:ts_rscore).reverse
 	end
 
 	def show
