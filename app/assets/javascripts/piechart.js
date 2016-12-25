@@ -6,8 +6,8 @@ d3.json("/departments/" + current_id + ".json", function(data){
 		return sum + d.value;
 	}, 0);
 	var adj_dep = data.adj_dep;
-	var svg_width = 550;
-	var svg_height = 550;
+	var svg_width = parseInt(d3.select("#piechart").style("width"), 10);
+	var svg_height = svg_width;
 
 	var pie = d3.layout.pie()
 				.padAngle(.02);
@@ -17,8 +17,8 @@ d3.json("/departments/" + current_id + ".json", function(data){
 	})
 	var piedata = pie(adj_dep);
 
-	var radius = 200;
-	var labelRadius = 230;
+	var radius = (svg_width/2)*0.7;
+	var labelRadius = radius + 30;
 	var arc = d3.svg.arc()
 				.outerRadius(radius)
 				.innerRadius(radius - 30);
@@ -45,18 +45,21 @@ d3.json("/departments/" + current_id + ".json", function(data){
 							.classed("value", true)
 							.attr("text-anchor", "middle")
 							.attr("x", "0")
-							.attr("dy", svg_height*2/15);
+							.attr("dy", svg_height*2/15)
+							.style("font-size", svg_width*2/15);
 	var center_link = center_block.append("a")
 						.classed("name", true);
 	var center_name = center_link.append("tspan")
 						.attr("text-anchor", "middle")
 						.attr("x", "0")
-						.attr("dy", svg_height*1/15);
+						.attr("dy", svg_height*1/15)
+						.style("font-size", Math.floor(svg_width/32));
 	var center_percentage = center_block.append("tspan")
 							.classed("percentage", true)
 							.attr("text-anchor", "middle")
 							.attr("x", "0")
-							.attr("dy", svg_height*2/15);
+							.attr("dy", svg_height*2/15)
+							.style("font-size", svg_width*2/15);
 
 	arcs.append("path")
 		.attr("fill", function(d, i){

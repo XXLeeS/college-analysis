@@ -3,9 +3,9 @@ var current_path = window.location.pathname.split("/");
 var current_id = current_path[current_path.length-1];
 
 d3.json("/departments.json", function(dep){
-	var svg_width = 400;
-	var svg_height = 250;
 	var svg_padding = 20;
+	var svg_width = parseInt(d3.select("#histogram").style("width"), 10);
+	var svg_height = 250;
 
 	var svg = d3.select("#histogram")
 				.append("svg")
