@@ -1,8 +1,8 @@
-json.deps @departments do |d|
-	json.dep_no d.dep_no
-	json.field d.field
-	json.rscore d.ts_rscore
-end
+# json.deps @departments do |d|
+# 	json.dep_no d.dep_no
+# 	json.field d.field
+# 	json.rscore d.ts_rscore
+# end
 
 fields = @fields.keys
 

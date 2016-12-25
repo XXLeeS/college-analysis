@@ -1,4 +1,10 @@
 @import "variables";
+#rank_index{
+	.fields{
+		font-size: 20px;
+	}
+}
+
 #rank_show{
 	.sort{
 		cursor: pointer;
@@ -12,5 +18,4 @@
 			content: "▼";
 		}
 	}
-	
 }

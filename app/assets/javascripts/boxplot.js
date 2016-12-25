@@ -13,8 +13,8 @@ d3.json("/ranks.json", function(data){
 
 	var colorScale = d3.scale.linear()
         .domain([
-	      Number(d3.max(stats, function(d){ return d.field })) + 1,
-	      Number(d3.min(stats, function(d){ return d.field })) - 1
+	      Number(d3.max(stats, function(d){ return d.field })),
+	      Number(d3.min(stats, function(d){ return d.field }))
 	    ])
         .range([d3.rgb("#16A085").darker(), d3.rgb("#16A085").brighter()]);
 

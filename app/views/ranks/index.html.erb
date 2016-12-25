@@ -1,7 +1,11 @@
 <div class="container" id="rank_index">
 	<div class="row">
 		<div class="col-md-4">
-			
+			<div class="fields">
+				<% @fields.each_value do |f| %>
+					<div class="one-field"><%= link_to f, rank_path(@fields.key(f)) %></div>
+			    <% end %>
+			</div>
 		</div>
 		<div class="col-md-8">
 			<div id="boxplot">
