@@ -36,10 +36,12 @@ function depnoToName(dep_no){
     return name;
 }
 
+$('#force').css("height", window.innerHeight - $('#navbar').height())
+            .css("width", document.body.clientWidth*3/4)
 d3.json("/get_nodes", function(nodes){
     d3.json("/get_links", function(links){       
-        var svg_height = window.innerHeight - $('#navbar').height();
-        var svg_width = document.body.clientWidth*3/4;
+        var svg_height = $('#force').height();
+        var svg_width = $('#force').width();
 
         var colors = d3.scale.ordinal()
                         .domain([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])

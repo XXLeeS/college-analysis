@@ -1,4 +1,4 @@
-class RankController < ApplicationController
+class RanksController < ApplicationController
 	before_action :get_fields
 
 	def index

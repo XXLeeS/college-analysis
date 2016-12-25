@@ -68,5 +68,5 @@ Rails.application.routes.draw do
 
   get '/force' => 'departments#force'
 
- resources :rank, only: [:index, :show], defaults: { format: 'html' }
+ resources :ranks, only: [:index, :show], defaults: { format: 'html' }
 end
