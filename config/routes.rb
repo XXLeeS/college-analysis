@@ -58,8 +58,6 @@ Rails.application.routes.draw do
 
   resources :departments, only: [:index, :show], defaults: { format: 'html' } do
     collection do
-      # get :enemies
-      # post :enemies, controller => 'enemy_submit'
       post :search
     end
   end
@@ -67,6 +65,8 @@ Rails.application.routes.draw do
 
   get '/get_nodes' => 'departments#get_nodes', defaults: { format: 'json' }
   get '/get_links' => 'departments#get_links', defaults: { format: 'json' }
+
   get '/force' => 'departments#force'
-  get '/rank/:field' => 'departments#rank', as:"rank"
+
+ resources :rank, only: [:index, :show], defaults: { format: 'html' }
 end
