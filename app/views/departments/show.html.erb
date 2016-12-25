@@ -7,7 +7,7 @@
 		<div class="panel panel-custom">
 			<div class="panel-heading">基本資料</div>
 			<div class="panel-body">
-				<table class="table">
+				<table class="table no-th">
 					<tr>
 						<td>正取人數</td>
 						<td><%= @department.max_num %></td>
@@ -43,18 +43,22 @@
 					</div>
 				</div>
 				<div class="col-md-4">
-					<table class="table">
+					<table class="table no-th">
 					<tr>
 						<td>Rscore</td>
-						<td><%= @department.ts_rscore %></td>
+						<td><%= "%.2f" % @department.ts_rscore %></td>
 					</tr>
 					<tr>
 						<td>Mu</td>
-						<td><%= @department.ts_mu %></td>
+						<td><%= "%.2f" % @department.ts_mu %></td>
 					</tr>
 					<tr>
 						<td>sigma</td>
-						<td><%= @department.ts_sigma %></td>
+						<td><%= "%.2f" % @department.ts_sigma %></td>
+					</tr>
+					<tr>
+						<td>百分等級</td>
+						<td><%= @percentage %></td>
 					</tr>
 				</table>
 				</div>

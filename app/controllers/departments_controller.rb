@@ -23,6 +23,12 @@ class DepartmentsController < ApplicationController
 	def show
 		@department = Dep105.find(params[:id])
 
+		rscores = Dep105.pluck(:dep_no, :ts_rscore).sort!{|a,b| a[1] <=> b[1]}.reverse
+		this_rank = rscores.index{|x| x[0] == @department.dep_no} + 1
+		@percentage = (((rscores.length - this_rank) / rscores.length.to_f)*100).to_i
+		puts rscores.length
+		puts this_rank
+
 		@adj_raw = Link105.where('source = (?) OR target = (?)', @department.dep_no, @department.dep_no)
 		@student_sum = @adj_raw.sum(:value)
 		@adj_dep = @adj_raw.map{|r| @department.dep_no == r.source ? { :dep_no => r.target, :name => depNo_to_name(r.target), :value => r.value} : { :dep_no => r.source, :name => depNo_to_name(r.source), :value => r.value} }

@@ -63,6 +63,9 @@
 		background-color: $light_gray;
 		color: #ffffff; 
 	}
+	table.no-th tr:first-child td{
+		border-top: none;
+	}
 }
 
 .ui-menu{
