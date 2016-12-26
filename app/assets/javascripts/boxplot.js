@@ -53,7 +53,13 @@ d3.json("/ranks.json", function(data){
 	    .append("g")
 	    .classed("box", true)
 	    .attr("transform", function(d){
-	      return "translate(" + svg_padding + "," + yScale(d.field) + ")"
+	    	return "translate(" + svg_padding + "," + yScale(d.field) + ")"
+	    })
+	    .on("mouseover", function(d, i){
+	    	
+	    })
+	    .on("mouseout", function(d, i){
+
 	    });
 
 	var range = boxes.append("line")
@@ -132,5 +138,28 @@ d3.json("/ranks.json", function(data){
         	return colorScale(d.field);
         })
         .style("stroke-width", "2px");
+
+    var outlier = boxes.selectAll("circle")
+    	.data(function(d){
+    		var arr = [];
+    		for(var i = 0; i < d.outlier.length; i++){
+    			arr.push({
+    				field: d.field,
+    				value: d.outlier[i]
+    			})
+    		}
+    		return arr;
+    	})
+    	.enter()
+    	.append("circle")
+    	.attr("r", 3)
+        .attr("cx", function(d, i){
+        	return xScale(d.value);
+        })
+        .attr("cy", 0)
+        .attr("fill", function(d, i){
+            return colorScale(d.field);
+        });
+
 })
 }
