@@ -18,14 +18,21 @@ rscores.unshift(@departments.map{|d| d.ts_rscore})
 statistics = []
 rscores.each_with_index do |field, i|
 	field.extend(DescriptiveStatistics)
+	q1 = field.percentile(25)
+	q3 = field.percentile(75)
+	iqr = q3 - q1
+	outlier = field.select{|score| score > (q3 + 1.5*iqr) || score < (q1 - 1.5*iqr)}
+	remove_outlier = field.select{|score| score < (q3 + 1.5*iqr) && score > (q1 - 1.5*iqr)}
+
 	temp = {
 		:field => i,
-		:min => field.min.to_f,
-		:max => field.max.to_f,
+		:min => remove_outlier.min.to_f,
+		:max => remove_outlier.max.to_f,
 		:median => field.median,
-		:q1 => field.percentile(25),
-		:q3 => field.percentile(75),
-		:number => field.number
+		:q1 => q1,
+		:q3 => q3,
+		:number => field.number,
+		:outlier => outlier
 	}
 	statistics.push(temp)
 end
@@ -38,4 +45,5 @@ json.statistics statistics do |field|
 	json.q1 field[:q1]
 	json.q3 field[:q3]
 	json.number field[:number]
+	json.outlier field[:outlier]
 end

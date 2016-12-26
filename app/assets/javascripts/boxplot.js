@@ -18,8 +18,12 @@ d3.json("/ranks.json", function(data){
 	    ])
         .range([d3.rgb("#16A085").darker(), d3.rgb("#16A085").brighter()]);
 
-	var min = d3.min(stats, function(d){ return d.min });
-	var max = d3.max(stats, function(d){ return d.max });
+	var min = d3.min(stats, function(d){ 
+		return Math.min(d.outlier);
+	});
+	var max = d3.max(stats, function(d){
+		return d3.max(d.outlier);
+	});
 
 	var xScale = d3.scale.linear()
 	    .domain([min, max])
