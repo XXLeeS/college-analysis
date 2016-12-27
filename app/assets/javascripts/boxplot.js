@@ -11,12 +11,9 @@ d3.json("/ranks.json", function(data){
 
 	var stats = data.statistics;
 
-	var colorScale = d3.scale.linear()
-        .domain([
-	      Number(d3.max(stats, function(d){ return d.field })),
-	      Number(d3.min(stats, function(d){ return d.field }))
-	    ])
-        .range([d3.rgb("#16A085").darker(), d3.rgb("#16A085").brighter()]);
+	var colorScale = d3.scale.ordinal()
+        .domain([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+        .range(["#111111", "#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#bcbd22", "#17becf"]);
 
 	var min = d3.min(stats, function(d){ 
 		return Math.min(d.outlier);
@@ -43,7 +40,7 @@ d3.json("/ranks.json", function(data){
 	svg.append("g")
 		.attr("class", "axis")
 	    .attr("transform", "translate(" + svg_padding + "," + (svg_height-svg_padding) + ")")
-	    .attr("fill", "#999")
+	    .attr("fill", "#666")
 	    .style("stroke-width", "2px")
 	    .call(xAxis);
 
@@ -55,11 +52,14 @@ d3.json("/ranks.json", function(data){
 	    .attr("transform", function(d){
 	    	return "translate(" + svg_padding + "," + yScale(d.field) + ")"
 	    })
+	    .style("opacity", 0.7)
 	    .on("mouseover", function(d, i){
-	    	
+	    	d3.select(this).style("opacity", 1);
+	    	d3.select(labels[0][i]).style("visibility", "visible");
 	    })
 	    .on("mouseout", function(d, i){
-
+	    	d3.select(this).style("opacity", 0.7);
+	    	d3.select(labels[0][i]).style("visibility", "hidden");
 	    });
 
 	var range = boxes.append("line")
@@ -160,6 +160,38 @@ d3.json("/ranks.json", function(data){
         .attr("fill", function(d, i){
             return colorScale(d.field);
         });
+
+    var labels = boxes.append("g")
+    	.style("text-anchor", "middle")
+    	.style("visibility", "hidden")
+	    .each(function(d, i){
+	    	d3.select(this)
+	    		.append("text")
+	    		.text(d.min)
+	    		.attr("x", xScale(d.min))
+	    		.attr("y", -12);
+	    	d3.select(this)
+	    		.append("text")
+	    		.text(d.q1)
+	    		.attr("x", xScale(d.q1))
+	    		.attr("y", -12);
+	    	d3.select(this)
+	    		.append("text")
+	    		.text(d.median)
+	    		.attr("x", xScale(d.median))
+	    		.attr("y", -12);
+	    	d3.select(this)
+	    		.append("text")
+	    		.text(d.q3)
+	    		.attr("x", xScale(d.q3))
+	    		.attr("y", -12);
+	    	d3.select(this)
+	    		.append("text")
+	    		.text(d.max)
+	    		.attr("x", xScale(d.max))
+	    		.attr("y", -12);
+	    	
+	    })
 
 })
 }

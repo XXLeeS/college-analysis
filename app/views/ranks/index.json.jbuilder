@@ -26,11 +26,11 @@ rscores.each_with_index do |field, i|
 
 	temp = {
 		:field => i,
-		:min => remove_outlier.min.to_f,
-		:max => remove_outlier.max.to_f,
-		:median => field.median,
-		:q1 => q1,
-		:q3 => q3,
+		:min => remove_outlier.min.to_f.round(2),
+		:max => remove_outlier.max.to_f.round(2),
+		:median => field.median.round(2),
+		:q1 => q1.round(2),
+		:q3 => q3.round(2),
 		:number => field.number,
 		:outlier => outlier
 	}

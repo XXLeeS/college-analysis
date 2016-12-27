@@ -3,7 +3,9 @@
 		<div class="col-md-4">
 			<div class="fields">
 				<% @fields.each_value do |f| %>
-					<div class="one-field"><%= link_to f, rank_path(@fields.key(f)) %></div>
+					<div class="one-field">
+						<fieldset><legend><%= link_to f, rank_path(@fields.key(f)) %></legend>
+					</div>
 			    <% end %>
 			</div>
 		</div>

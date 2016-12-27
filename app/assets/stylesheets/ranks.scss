@@ -1,7 +1,18 @@
 @import "variables";
 #rank_index{
 	.fields{
-		font-size: 20px;
+		font-size: 18px;
+		.one-field{
+
+			text-align: center;
+			fieldset{
+				border-top: 1px solid #999;
+			}
+			legend{
+				width: auto;
+				padding: 0 5px;
+			}
+		}
 	}
 }
 
