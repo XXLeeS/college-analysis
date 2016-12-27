@@ -17,7 +17,7 @@ class DepartmentsController < ApplicationController
 
 	def show_college
 		@college = College.find(params[:id])
-		@departments = Dep105.where('college_no = (?)', @college.college_no)
+		@departments = Dep105.where('college_no = (?)', @college.college_no).order(:dep_no)
 	end
 
 	def show

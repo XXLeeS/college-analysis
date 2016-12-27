@@ -11,9 +11,12 @@ d3.json("/ranks.json", function(data){
 
 	var stats = data.statistics;
 
-	var colorScale = d3.scale.ordinal()
-        .domain([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-        .range(["#111111", "#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#bcbd22", "#17becf"]);
+	var colorScale = d3.scale.linear()
+	    .domain([
+	      Number(d3.max(stats, function(d){ return d.field })),
+	      Number(d3.min(stats, function(d){ return d.field }))
+	    ])
+	    .range([d3.rgb("#16A085").darker(), d3.rgb("#16A085").brighter()]);
 
 	var min = d3.min(stats, function(d){ 
 		return Math.min(d.outlier);
@@ -30,7 +33,7 @@ d3.json("/ranks.json", function(data){
 	    .domain([
 	      Number(d3.max(stats, function(d){ return d.field })) + 1,
 	      Number(d3.min(stats, function(d){ return d.field })) - 1
-	    ])    
+	    ])
 	    .range([svg_height - svg_padding, svg_padding]);
 
 	var xAxis = d3.svg.axis()
