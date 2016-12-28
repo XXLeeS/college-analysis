@@ -19,6 +19,7 @@ $.getJSON('/force', function(data){
     dep_autocomplete.sort(function(a, b){
         return a.value - b.value;
     });
+    startd3();
 });
 
 $('#search').autocomplete({
@@ -37,7 +38,8 @@ function depnoToName(dep_no){
 }
 
 $('#force').css("height", window.innerHeight - $('#navbar').height())
-            .css("width", document.body.clientWidth*3/4)
+            .css("width", document.body.clientWidth*3/4);
+function startd3(){
 d3.json("/get_nodes", function(nodes){
     d3.json("/get_links", function(links){       
         var svg_height = $('#force').height();
@@ -295,4 +297,5 @@ d3.json("/get_nodes", function(nodes){
         })
     })
 })
+}
 }

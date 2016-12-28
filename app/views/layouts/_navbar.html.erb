@@ -2,7 +2,9 @@
 <div class="container">
   <div class="row">
     <div class="navbar-header" >
-        <%= link_to 'College', root_path, class: "navbar-brand " %>
+        <%= link_to root_path, class: "navbar-brand" do %>
+          <%= image_tag "logo.png" %>
+        <% end %>
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#ThisPlaceCollapse">
           <i class="fa fa-bars" aria-hidden="true"></i>
         </button>
