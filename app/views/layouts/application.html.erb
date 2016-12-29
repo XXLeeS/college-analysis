@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>College</title>
+  <title><%= content_for?(:title) ? yield(:title) : '' %> - 卡利基狂分析</title>
 
   <%= favicon_link_tag 'logo.ico' %>
   <%= stylesheet_link_tag 'application', media: 'all' %>
