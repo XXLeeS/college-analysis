@@ -1,7 +1,16 @@
 <div class="container" id="rank_show">
 	<div class="row">
 		<div class="col-md-10 col-xs-9">
-			<h1><%= @fields[@this_field] %></h1>
+			<div class="btn-group">
+				<button class="btn-title dropdown-toggle" type="button" data-toggle="dropdown">
+			    	<h1><%= @fields[@this_field] %> <i class="fa fa-caret-down" aria-hidden="true"></i></h1>
+				</button>
+				<ul class="dropdown-menu dropdown-menu-inverse" role="menu">
+			    <% @fields.each_value do |f| %>
+					<li><%= link_to f, rank_path(@fields.key(f)) %></li>
+			    <% end %>
+				</ul>
+			</div>
 		</div>
 		<div class="col-md-2 col-xs-3 title-data">
 			<p class="number"><%= "%.2f" % @rscore_mean %></p>
@@ -9,16 +18,6 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="btn-group">
-			<button class="btn btn-inverse dropdown-toggle" type="button" data-toggle="dropdown">
-		    選擇領域<span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu dropdown-menu-inverse" role="menu">
-		    <% @fields.each_value do |f| %>
-				<li><%= link_to f, rank_path(@fields.key(f)) %></li>
-		    <% end %>
-			</ul>
-		</div>
 		<table class="table" id="table">
 			<thead>
 			<tr>

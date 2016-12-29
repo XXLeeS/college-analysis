@@ -17,4 +17,4 @@ $.getJSON('/departments.json', function(data){
 });
 
 }
-
+$('[data-toggle="tooltip"]').tooltip();
