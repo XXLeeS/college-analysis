@@ -18,6 +18,8 @@ class DepartmentsController < ApplicationController
 	def show_college
 		@college = College.find(params[:id])
 		@departments = Dep105.where('college_no = (?)', @college.college_no).order(:dep_no)
+
+		@rscore_mean = @departments.map(&:ts_rscore).inject(0, &:+) / @departments.length
 	end
 
 	def show

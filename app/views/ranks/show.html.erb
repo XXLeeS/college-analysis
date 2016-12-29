@@ -1,5 +1,13 @@
 <div class="container" id="rank_show">
-	<h1><%= @fields[@this_field] %></h1>
+	<div class="row">
+		<div class="col-md-10 col-xs-9">
+			<h1><%= @fields[@this_field] %></h1>
+		</div>
+		<div class="col-md-2 col-xs-3 title-data">
+			<p class="number"><%= "%.2f" % @rscore_mean %></p>
+			<p class="description">平均 Rscore</p>
+		</div>
+	</div>
 	<div class="row">
 		<div class="btn-group">
 			<button class="btn btn-inverse dropdown-toggle" type="button" data-toggle="dropdown">

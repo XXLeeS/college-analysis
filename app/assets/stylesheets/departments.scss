@@ -24,6 +24,18 @@
 }
 
 #dep_showcollege{
+	.title-data{
+		text-align: center;
+		.number{
+			margin-top: 10px;
+			font-weight: bold;
+			font-size: 22px;
+		}
+		.description{
+			font-size: 14px;
+			color: #999;
+		}
+	}
 	.one-dep{
 		padding: 10px;
 		background-color: #fff;

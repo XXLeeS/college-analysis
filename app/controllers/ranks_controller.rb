@@ -12,6 +12,8 @@ class RanksController < ApplicationController
 		else
 			@departments = Dep105.where('field = (?)', @this_field).order(:ts_rscore).reverse
 		end
+
+		@rscore_mean = @departments.map(&:ts_rscore).inject(0, &:+) / @departments.length
 	end
 
 	private

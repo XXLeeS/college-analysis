@@ -17,6 +17,18 @@
 }
 
 #rank_show{
+	.title-data{
+		text-align: center;
+		.number{
+			margin-top: 10px;
+			font-weight: bold;
+			font-size: 22px;
+		}
+		.description{
+			font-size: 14px;
+			color: #999;
+		}
+	}
 	.sort{
 		cursor: pointer;
 		&:hover{
