@@ -194,7 +194,7 @@ d3.json("/get_nodes", function(nodes){
 //        define legend
         var legend_data = {
                 "field": ["教育領域", "人文及藝術領域", "社會、商業及法律", "科學領域", "工程、製造及營造", "農學領域", "醫藥衛生及社福", "服務領域", "其他"],
-                "level": ["台清交成政", "中字輩", "醫學大學", "國立", "私立前中段", "私立後段"]
+                "level": ["台清交成政", "中字輩", "醫學大學", "國立", "私立大學", "退場大學"]
             };
         var current_legend = legend_data.field;
         var line_height = 20;
