@@ -29,6 +29,7 @@ gem 'font-awesome-rails'
 gem 'normalize-rails'
 gem "flat-ui-rails"
 gem 'descriptive_statistics', '~> 2.4.0', :require => 'descriptive_statistics/safe'
+gem 'dotenv-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
