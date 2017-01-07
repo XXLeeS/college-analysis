@@ -1,0 +1,37 @@
+<% title "關於本站" %>
+<div class="container" id="about" style="margin-top: 50px;">
+<div class="padding-wrapper">
+	<div class="row">
+		<h3>每年都有許多莘莘學子在選系階段迷惘，別擔心，我們透過資料分析掌握各大院校間的愛恨情仇。</h3>
+	</div>
+	<div class="row">
+		<h1><i class="fa fa-caret-right" aria-hidden="true"></i>我們是誰？</h1>
+		<p>我們是台大資管系的學生，本網站是由盧信銘教授所帶領的專題成果。</p>
+	</div>
+	<div class="row">
+		<h1><i class="fa fa-caret-right" aria-hidden="true"></i>我們的方法是什麼？</h1>
+		<p>本網站建立於TrueSkill的分析結果，而TrueSkill是由微軟開發的一款線上多人連線的評比系統，基本的網路架構是奠基於貝氏機率分佈，和其他如Elo的排名系統最大的差異在於考慮了選手水準的不確定性。</p>
+		<p>我們將105年每位學生一階申請的系所，排除掉沒備取以及備取而沒上的系所，剩下的所有科系依據最後選上的系所為優勝者，與其餘的所有系所進行兩兩配對，以此為基準。</p>
+		<p>關於TrueSkill的詳細內容可參考以下網站：</p>
+		<ul>
+			<li>
+				<p><a href="http://trueskill.org/" target="_blank">trueskill.org</a></p>
+			</li>
+			<li>
+				<p><a href="http://www.moserware.com/2010/03/computing-your-skill.html" target="_blank">Computing Your Skill</a></p>
+			</li>
+			<li>
+				<p><a href="https://zh.wikipedia.org/wiki/TrueSkill%E8%AF%84%E5%88%86%E7%B3%BB%E7%BB%9F" target="_blank">維基百科</a></p>
+			</li>
+		</ul>
+	</div>
+	<div class="row">
+		<h1><i class="fa fa-caret-right" aria-hidden="true"></i>Rscore是什麼意思？</h1>
+		<p>Rscore是由演算法跑完得到之mu(平均)和sigma(變異數)，由mu - 3sigma = Rscore而來，為了盡可能降低變異數而造成的誤判。而Rscore在這裡所代表的意義並不是科系之間的優劣，而是考生對於該科系的偏好程度。</p>
+	</div>
+	<div class="row">
+		<h1><i class="fa fa-caret-right" aria-hidden="true"></i>預測備取怎麼算出來的？</h1>
+		<p>如果仔細看應該會發現每個系所頁面的左上角中，有一列是預測備取，而作法為根據TrueSkill的運算結果中的平均值與標準差，對每個科系進行50,000次模擬，再從每個系所的每個人進行，計算該生選該系的機率的總和，若總和小於預計錄取名額，代表備取全上；若大於預計錄取名額，減掉預計錄取名額的值即為預測備取。</p>
+	</div>
+</div>
+</div>

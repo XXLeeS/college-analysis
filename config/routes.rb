@@ -55,6 +55,7 @@ Rails.application.routes.draw do
   #   end
 
   root to: 'welcome#index'
+  get '/about' => 'welcome#about'
 
   resources :departments, only: [:index, :show], defaults: { format: 'html' } do
     collection do
