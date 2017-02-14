@@ -119,7 +119,7 @@ d3.json("/get_nodes", function(nodes){
         var svg_links = container.selectAll("line");
         var svg_texts = container.selectAll("text");
         var svg_nodes = container.selectAll("circle");
-        var count = 1;
+
         function start(){
             force.nodes(nodes)
                 .links(links)
