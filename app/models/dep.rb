@@ -1,6 +1,6 @@
-class Dep105 < ActiveRecord::Base
-	self.table_name = "dep_105"
-	self.primary_key = "dep_no"
+class Dep < ActiveRecord::Base
+	self.table_name = "deps"
+	self.primary_key = "dep_no", "year"
 
 	def short_name
 		self.name.sub(College.find(self.college_no).name, "")
@@ -48,6 +48,6 @@ class Dep105 < ActiveRecord::Base
 	end
 
 	belongs_to :college
-	has_many :winrate105s
-	has_many :link105s
+	has_many :winrates
+	has_many :links
 end

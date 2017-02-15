@@ -1,5 +1,6 @@
 if($('#boxplot').length){
-d3.json("/ranks.json", function(data){
+var current_path = window.location.pathname;
+d3.json(current_path + ".json", function(data){
 	var svg_padding = 20;
 	var svg_width = parseInt(d3.select("#boxplot").style("width"), 10);
 	var svg_height = window.innerHeight - $('#navbar').height();

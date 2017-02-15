@@ -57,17 +57,21 @@ Rails.application.routes.draw do
   root to: 'welcome#index'
   get '/about' => 'welcome#about'
 
-  resources :departments, only: [:index, :show], defaults: { format: 'html' } do
-    collection do
-      post :search
+  scope '/:year', defaults: { year: '105' } do
+    resources :departments, only: [:index, :show], defaults: { format: 'html' } do
+      collection do
+        post :search
+      end
     end
+    get '/' => 'welcome#index'
+    get '/colleges/:id' => 'departments#show_college', as: "college"
+
+    get '/get_nodes' => 'departments#get_nodes', defaults: { format: 'json' }
+    get '/get_links' => 'departments#get_links', defaults: { format: 'json' }
+    get '/force' => 'departments#force'
+
+   resources :ranks, only: [:index, :show], defaults: { format: 'html' }
   end
-  get '/colleges/:id' => 'departments#show_college', as: "college"
 
-  get '/get_nodes' => 'departments#get_nodes', defaults: { format: 'json' }
-  get '/get_links' => 'departments#get_links', defaults: { format: 'json' }
-
-  get '/force' => 'departments#force'
-
- resources :ranks, only: [:index, :show], defaults: { format: 'html' }
+  
 end

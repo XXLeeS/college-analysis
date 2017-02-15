@@ -1,6 +1,8 @@
 class DepartmentsController < ApplicationController
+	before_action :set_year
+
 	def index
-		@departments = Dep105.all.order(:dep_no)
+		@departments = @dep.all.order(:dep_no)
 		@colleges = College.all.order(:college_no)
 
 		respond_to do |format|
@@ -17,25 +19,25 @@ class DepartmentsController < ApplicationController
 
 	def show_college
 		@college = College.find(params[:id])
-		@departments = Dep105.where('college_no = (?)', @college.college_no).order(:dep_no)
+		@departments = @dep.where('college_no = (?)', @college.college_no).order(:dep_no)
 
 		@rscore_mean = @departments.map(&:ts_rscore).inject(0, &:+) / @departments.length
 	end
 
 	def show
-		@department = Dep105.find(params[:id])
+		@department = @dep.find_by(dep_no: params[:id])
 
-		rscores = Dep105.pluck(:dep_no, :ts_rscore).sort!{|a,b| a[1] <=> b[1]}.reverse
+		rscores = @dep.pluck(:dep_no, :ts_rscore).sort!{|a,b| a[1] <=> b[1]}.reverse
 		this_rank = rscores.index{|x| x[0] == @department.dep_no} + 1
 		@percentage = (((rscores.length - this_rank) / rscores.length.to_f)*100).to_i
 		puts rscores.length
 		puts this_rank
 
-		@adj_raw = Link105.where('source = (?) OR target = (?)', @department.dep_no, @department.dep_no)
+		@adj_raw = @link.where('source = (?) OR target = (?)', @department.dep_no, @department.dep_no)
 		@student_sum = @adj_raw.sum(:value)
 		@adj_dep = @adj_raw.map{|r| @department.dep_no == r.source ? { :dep_no => r.target, :name => depNo_to_name(r.target), :value => r.value} : { :dep_no => r.source, :name => depNo_to_name(r.source), :value => r.value} }
 
-		@win_rate = Winrate105.where('dep = (?) AND total >= 5', @department.dep_no)
+		@win_rate = @winrate.where('dep = (?) AND total >= 5', @department.dep_no)
 		@win_rate = @win_rate.sort_by(&:total).reverse
 	end
 
@@ -54,7 +56,7 @@ class DepartmentsController < ApplicationController
 	end
 
 	def force
-		@departments = Dep105.all.order(:dep_no)
+		@departments = @dep.all.order(:dep_no)
 
 		respond_to do |format|
 			format.html
@@ -77,18 +79,25 @@ class DepartmentsController < ApplicationController
 		}
 		@this_field = params[:field].to_i
 		if @this_field == 0
-			@departments = Dep105.all.order(:ts_rscore).reverse
+			@departments = @dep.all.order(:ts_rscore).reverse
 		else
-			@departments = Dep105.where('field = (?)', params[:field]).order(:ts_rscore).reverse
+			@departments = @dep.where('field = (?)', params[:field]).order(:ts_rscore).reverse
 		end
 	end
 
 	private
 
+	def set_year
+		@year = params[:year]
+		@dep = Dep.where('year = (?)', @year)
+		@winrate = Winrate.where('year = (?)', @year)
+		@link = Link.where('year = (?)', @year)
+	end
+
 	def collegeNo_to_name(college_no)
 		College.find(college_no).name
 	end
 	def depNo_to_name(dep_no)
-		Dep105.find(dep_no).name
+		@dep.find_by(dep_no: dep_no).name
 	end
 end

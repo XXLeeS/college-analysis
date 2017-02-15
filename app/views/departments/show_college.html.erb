@@ -12,7 +12,7 @@
 	<div class="row">
 		<% @departments.each do |d| %>
 		<div class="col-md-12">
-			<%= link_to department_path(d) do %>
+			<%= link_to department_path(d.year, d.dep_no) do %>
 			<div class="row one-dep">
 				<div class="col-xs-9">
 					<span class="name"><%= d.short_name %></span>

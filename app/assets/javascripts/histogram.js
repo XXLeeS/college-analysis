@@ -1,8 +1,9 @@
 if($('#histogram').length){
-var current_path = window.location.pathname.split("/");
-var current_id = current_path[current_path.length-1];
+var current_path = window.location.pathname.split('/');
+var current_year = current_path[1];
+var current_id = current_path[3];
 
-d3.json("/departments.json", function(dep){
+d3.json("/" + current_year + "/departments.json", function(dep){
 	var svg_padding = 20;
 	var svg_width = parseInt(d3.select("#histogram").style("width"), 10);
 	var svg_height = 250;

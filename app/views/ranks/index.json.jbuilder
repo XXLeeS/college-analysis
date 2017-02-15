@@ -7,7 +7,6 @@
 fields = @fields.keys
 
 dep_by_field = @departments.group_by{|d| d.field}.sort_by{|key, value| key}
-# puts dep_by_field[8][1][1].values
 rscores = []
 dep_by_field.each_with_index do |field, i| 
 	rscores[i] = field[1].map{|d| d.ts_rscore}

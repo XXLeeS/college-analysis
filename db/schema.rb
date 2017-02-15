@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161217062956) do
+ActiveRecord::Schema.define(version: 20170215180231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20161217062956) do
 
   add_index "colleges", ["college_no"], name: "index_colleges_on_college_no", unique: true, using: :btree
 
-  create_table "dep_105", id: false, force: :cascade do |t|
+  create_table "deps", id: false, force: :cascade do |t|
     t.string  "dep_no",      null: false
     t.string  "name"
     t.integer "last"
@@ -38,22 +38,25 @@ ActiveRecord::Schema.define(version: 20161217062956) do
     t.integer "waiting_num"
     t.integer "real_num"
     t.decimal "predict_num"
+    t.integer "year"
   end
 
-  add_index "dep_105", ["dep_no"], name: "index_dep_105_on_dep_no", unique: true, using: :btree
+  add_index "deps", ["dep_no", "year"], name: "index_deps_on_dep_no_and_year", unique: true, using: :btree
 
-  create_table "link_105", id: false, force: :cascade do |t|
+  create_table "links", id: false, force: :cascade do |t|
     t.string  "source"
     t.string  "target"
     t.integer "value"
+    t.integer "year"
   end
 
-  create_table "winrate_105", id: false, force: :cascade do |t|
+  create_table "winrates", id: false, force: :cascade do |t|
     t.string  "dep"
     t.string  "opponent"
     t.integer "win"
     t.integer "total"
     t.decimal "win_rate"
+    t.integer "year"
   end
 
 end

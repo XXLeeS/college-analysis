@@ -1,4 +1,4 @@
-if(window.location.pathname == '/force'){
+if(window.location.pathname == '/105/force'){
 var spinner = new Spinner({
     color: '#666',
     lines: 12,
@@ -8,7 +8,7 @@ var spinner = new Spinner({
 
 var departments;
 var dep_autocomplete = [];
-$.getJSON('/force', function(data){
+$.getJSON('/105/force', function(data){
     departments = data;
     $.each(data, function(i, v){
         dep_autocomplete.push({
@@ -40,8 +40,8 @@ function depnoToName(dep_no){
 $('#force').css("height", window.innerHeight - $('#navbar').height())
             .css("width", document.body.clientWidth*3/4);
 function startd3(){
-d3.json("/get_nodes", function(nodes){
-    d3.json("/get_links", function(links){       
+d3.json("/105/get_nodes", function(nodes){
+    d3.json("/105/get_links", function(links){       
         var svg_height = $('#force').height();
         var svg_width = $('#force').width();
 
