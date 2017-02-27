@@ -1,0 +1,25 @@
+{
+  "name": "college-analysis",
+  "version": "1.0.0",
+  "description": "== README",
+  "main": "application.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XXLeeS/college-analysis.git"
+  },
+  "author": "xxlee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/XXLeeS/college-analysis/issues"
+  },
+  "homepage": "https://github.com/XXLeeS/college-analysis#readme",
+  "dependencies": {
+    "vue": "^2.2.1"
+  }
+}

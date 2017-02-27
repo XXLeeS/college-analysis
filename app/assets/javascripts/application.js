@@ -15,7 +15,7 @@
 //= require d3
 //= require bootstrap-sprockets
 //= require jquery-ui
-//= require vue
+//= require vue/dist/vue.js
 //= require spin
 //= require range
 //= require list

@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby "2.3.3"
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -24,7 +25,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass'
 gem 'd3-rails', '~> 3.5.17'
 gem 'jquery-ui-rails'
-gem 'vuejs-rails'
 gem 'font-awesome-rails'
 gem 'normalize-rails'
 gem "flat-ui-rails"

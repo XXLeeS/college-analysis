@@ -90,3 +90,6 @@ pickle-email-*.html
 
 # precompile
 /public/assets
+
+# npm modules
+/node_modules
