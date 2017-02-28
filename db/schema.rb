@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170215180231) do
+ActiveRecord::Schema.define(version: 20170228114630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,15 @@ ActiveRecord::Schema.define(version: 20170215180231) do
   add_index "deps", ["dep_no", "year"], name: "index_deps_on_dep_no_and_year", unique: true, using: :btree
 
   create_table "links", id: false, force: :cascade do |t|
+    t.string  "source_depno"
+    t.string  "target_depno"
+    t.integer "value"
+    t.integer "year"
+    t.integer "source"
+    t.integer "target"
+  end
+
+  create_table "links_backup", id: false, force: :cascade do |t|
     t.string  "source"
     t.string  "target"
     t.integer "value"

@@ -1,4 +1,4 @@
-if(window.location.pathname == '/105/force'){
+if(window.location.pathname.split('/')[2] == 'force'){
 var spinner = new Spinner({
     color: '#666',
     lines: 12,
@@ -155,8 +155,8 @@ d3.json("/105/get_nodes", function(nodes){
                         showtext(d);
                         d3.select(this).classed("node-active", true);
                         
-                        $("#node_name a").text(depnoToName(d.name))
-                                        .attr("href", "/departments/" + d.name);
+                        $("#node_name a").text(depnoToName(d.dep_no))
+                                        .attr("href", "/departments/" + d.dep_no);
                     })
                     .on("mouseout", function(d){
                         hidetext(d);
@@ -176,7 +176,7 @@ d3.json("/105/get_nodes", function(nodes){
             svg_texts.enter()
                     .append("text")
                     .text(function(d){
-                        return depnoToName(d.name);
+                        return depnoToName(d.dep_no);
                     })
                     .style("fill", "black")
                     .style("visibility", "hidden")
@@ -246,7 +246,7 @@ d3.json("/105/get_nodes", function(nodes){
             if(dep_no){
                 var target;
                 svg_nodes.each(function(d){
-                    if(d.name == dep_no){
+                    if(d.dep_no == dep_no){
                         target = d3.select(this);
                     }
                 })

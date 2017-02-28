@@ -27,29 +27,31 @@ class DepartmentsController < ApplicationController
 	def show
 		@department = @dep.find_by(dep_no: params[:id])
 
+		# for histogram
 		rscores = @dep.pluck(:dep_no, :ts_rscore).sort!{|a,b| a[1] <=> b[1]}.reverse
 		this_rank = rscores.index{|x| x[0] == @department.dep_no} + 1
 		@percentage = (((rscores.length - this_rank) / rscores.length.to_f)*100).to_i
-		puts rscores.length
-		puts this_rank
 
-		@adj_raw = @link.where('source = (?) OR target = (?)', @department.dep_no, @department.dep_no)
+		# for piechart
+		@adj_raw = @link.where('source_depno = (?) OR target_depno = (?)', @department.dep_no, @department.dep_no)
 		@student_sum = @adj_raw.sum(:value)
-		@adj_dep = @adj_raw.map{|r| @department.dep_no == r.source ? { :dep_no => r.target, :name => depNo_to_name(r.target), :value => r.value} : { :dep_no => r.source, :name => depNo_to_name(r.source), :value => r.value} }
+		@adj_dep = @adj_raw.map{|r| @department.dep_no == r.source_depno ? { :dep_no => r.target_depno, :name => depNo_to_name(r.target_depno), :value => r.value} : { :dep_no => r.source_depno, :name => depNo_to_name(r.source_depno), :value => r.value} }
 
+		# for win rate
 		@win_rate = @winrate.where('dep = (?) AND total >= 5', @department.dep_no)
 		@win_rate = @win_rate.sort_by(&:total).reverse
 	end
 
 	def get_nodes
-		@nodes = File.read('app/assets/javascripts/nodes105.json')
+		@nodes = @dep.select(:dep_no, :field, :level).order(:dep_no)
 		respond_to do |format|
 		    format.json { render json: @nodes }
 		end
 	end
 
 	def get_links
-		@links = File.read('app/assets/javascripts/links105.json')
+		# @links = File.read('app/assets/javascripts/links105.json')
+		@links = @link.where('value >= 5').select(:source, :target, :value)
 		respond_to do |format|
 		    format.json { render json: @links }
 		end
