@@ -56,6 +56,7 @@ Rails.application.routes.draw do
 
   root to: 'welcome#index'
   get '/about' => 'welcome#about'
+  get '/change_year/:new_year' => 'application#change_year', as: 'change_year'
 
   scope '/:year', defaults: { year: '105' } do
     resources :departments, only: [:index, :show], defaults: { format: 'html' } do
