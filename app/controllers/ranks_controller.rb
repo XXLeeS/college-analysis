@@ -2,18 +2,25 @@ class RanksController < ApplicationController
 	before_action :set_year, :get_fields
 
 	def index
-		@departments = @dep.all.order(:ts_rscore).reverse
+		@departments = @dep.where.not('ts_rscore' => nil).all.order(:ts_rscore).reverse
 	end
 
 	def show
 		@this_field = params[:id].to_i
 		if @this_field == 0
-			@departments = @dep.all.order(:ts_rscore).reverse
+			@with_rscore = @dep.where.not('ts_rscore' => nil).all.order(:ts_rscore).reverse
+			@without_rscore = @dep.where('ts_rscore' => nil).all
 		else
-			@departments = @dep.where('field = (?)', @this_field).order(:ts_rscore).reverse
+			@with_rscore = @dep.where('field = (?)', @this_field)
+								.where.not('ts_rscore' => nil).all.order(:ts_rscore).reverse
+			@without_rscore = @dep.where('field = (?)', @this_field)
+									.where('ts_rscore' => nil).all
 		end
+		@departments = @with_rscore + @without_rscore
 
-		@rscore_mean = @departments.map(&:ts_rscore).inject(0, &:+) / @departments.length
+		rscore_sum = @departments.map(&:ts_rscore).compact.inject(0, &:+)
+		rscore_length = @departments.map(&:ts_rscore).compact.length
+		@rscore_mean = rscore_sum / rscore_length
 	end
 
 	private

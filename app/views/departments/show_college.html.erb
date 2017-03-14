@@ -18,15 +18,15 @@
 					<span class="name"><%= d.short_name %></span>
 				</div>
 				<div class="col-xs-1 data">
-					<p class="number"><%= "%.2f" % d.ts_rscore %></p>
+					<p class="number"><%= d.ts_rscore.nil? ? "N/A" : "%.2f" % d.ts_rscore %></p>
 					<p class="description">Rscore</p>
 				</div>
 				<div class="col-xs-1 data">
-					<p class="number"><%= "%.2f" % d.ts_mu %></p>
+					<p class="number"><%= d.ts_mu.nil? ? "N/A" : "%.2f" % d.ts_mu %></p>
 					<p class="description">Mu</p>
 				</div>
 				<div class="col-xs-1 data">
-					<p class="number"><%= "%.2f" % d.ts_sigma %></p>
+					<p class="number"><%= d.ts_sigma.nil? ? "N/A" : "%.2f" % d.ts_sigma %></p>
 					<p class="description">Sigma</p>
 				</div>
 			</div>
