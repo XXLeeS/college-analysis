@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" id="navbar">
+<nav  id="navbar" class="navbar navbar-inverse navbar-fixed-top">
 <div class="container">
   <div class="row">
     <div class="navbar-header" >
@@ -15,6 +15,18 @@
     			<li><%= link_to '網路圖', force_path %></li>
           <li><%= link_to 'TrueSkill排名', ranks_path %></li>
           <li><%= link_to '關於本站', about_path %></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="#" id="navbar_year" class="dropdown-toggle" aria-expanded="true" data-toggle="dropdown">
+              選擇年份 <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu  dropdown-menu-inverse" role="menu" aria-labelledby="navbar_year">
+              <% $available_years.each do |y| %>
+                <li><%= link_to y, change_year_path(y) %></li>
+              <% end %>
+            </ul>
+          </li>
         </ul>
     </div>
   </div>

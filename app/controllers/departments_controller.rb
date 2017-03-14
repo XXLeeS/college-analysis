@@ -21,17 +21,25 @@ class DepartmentsController < ApplicationController
 		@college = College.find(params[:id])
 		@departments = @dep.where('college_no = (?)', @college.college_no).order(:dep_no)
 
-		@rscore_mean = @departments.map(&:ts_rscore).inject(0, &:+) / @departments.length
+		rscore_sum = @departments.map(&:ts_rscore).compact.inject(0, &:+)
+		rscore_length = @departments.where.not('ts_rscore' => nil).length
+		@rscore_mean = rscore_sum / rscore_length
 	end
 
 	def show
 		@department = @dep.find_by(dep_no: params[:id])
 
 		# for histogram
-		rscores = @dep.pluck(:dep_no, :ts_rscore).sort!{|a,b| a[1] <=> b[1]}.reverse
-		this_rank = rscores.index{|x| x[0] == @department.dep_no} + 1
-		@percentage = (((rscores.length - this_rank) / rscores.length.to_f)*100).to_i
-
+		rscores = @dep.where.not('ts_rscore' => nil).pluck(:dep_no, :ts_rscore).sort!{|a,b| a[1] <=> b[1]}.reverse
+		if rscores.index{|x| x[0] == @department.dep_no}.nil?
+			this_rank = "N/A"
+			@percentage = "N/A"
+		else
+			this_rank = rscores.index{|x| x[0] == @department.dep_no} + 1
+			@percentage = (((rscores.length - this_rank) / rscores.length.to_f)*100).to_i
+		end
+		
+		
 		# for piechart
 		@adj_raw = @link.where('source_depno = (?) OR target_depno = (?)', @department.dep_no, @department.dep_no)
 		@student_sum = @adj_raw.sum(:value)

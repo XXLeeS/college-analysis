@@ -47,15 +47,15 @@
 					<table class="table no-th">
 					<tr>
 						<td>Rscore</td>
-						<td><%= "%.2f" % @department.ts_rscore %></td>
+						<td><%= @department.ts_rscore.nil? ? "N/A" : "%.2f" % @department.ts_rscore %></td>
 					</tr>
 					<tr>
 						<td>Mu</td>
-						<td><%= "%.2f" % @department.ts_mu %></td>
+						<td><%= @department.ts_mu.nil? ? "N/A" : "%.2f" % @department.ts_mu %></td>
 					</tr>
 					<tr>
 						<td>sigma</td>
-						<td><%= "%.2f" % @department.ts_sigma %></td>
+						<td><%= @department.ts_sigma.nil? ? "N/A" : "%.2f" % @department.ts_sigma %></td>
 					</tr>
 					<tr>
 						<td>百分等級</td>

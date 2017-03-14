@@ -17,7 +17,9 @@ class Dep < ActiveRecord::Base
 	end
 
 	def predict_text
-		if self.predict_num.floor > 0
+		if self.predict_num.nil?
+			"N/A"
+		elsif self.predict_num.floor > 0
 			"備取" + (String(self.predict_num.floor) rescue nil)
 		else
 			"正取"
